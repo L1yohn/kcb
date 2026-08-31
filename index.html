@@ -840,7 +840,6 @@ body {
           <div class="brand-title">学期课程表</div>
         </div>
         <div class="header-actions">
-          <button class="icon-btn" id="share-btn" title="手机扫码查看" aria-label="手机扫码查看">📱</button>
           <button class="icon-btn" id="theme-toggle-btn" title="切换暗黑/浅色模式" aria-label="切换主题">🌓</button>
         </div>
       </div>
@@ -901,20 +900,6 @@ body {
         <button class="modal-close-btn" aria-label="关闭">&times;</button>
       </div>
       <div id="detail-modal-content"></div>
-    </div>
-  </div>
-
-  <!-- 手机扫码分享弹窗 -->
-  <div id="share-modal" class="modal-overlay">
-    <div class="modal-sheet">
-      <div class="sheet-handle"></div>
-      <div class="modal-header">
-        <div class="modal-title">📱 手机扫码访问</div>
-        <button class="modal-close-btn" aria-label="关闭">&times;</button>
-      </div>
-      <div class="qr-preview-box" id="share-qr-code"></div>
-      <div style="font-size: 11px; color: var(--text-muted); word-break: break-all; text-align: center; margin-top: 6px;" id="share-url-text"></div>
-      <button class="secondary-btn" onclick="document.getElementById('share-modal').classList.remove('active')">关闭</button>
     </div>
   </div>
 
@@ -1140,11 +1125,6 @@ body {
             setStorage('kcb_theme', 'dark');
           }
         });
-      }
-
-      const shareBtn = document.getElementById('share-btn');
-      if (shareBtn) {
-        shareBtn.addEventListener('click', openShareModal);
       }
 
       document.querySelectorAll('.modal-close-btn, .modal-overlay').forEach(el => {
@@ -1634,29 +1614,6 @@ body {
 
       modal.classList.add('active');
     };
-
-    function openShareModal() {
-      const modal = document.getElementById('share-modal');
-      const qrBox = document.getElementById('share-qr-code');
-      const urlBox = document.getElementById('share-url-text');
-      if (!modal || !qrBox) return;
-
-      const currentUrl = window.location.href;
-      if (urlBox) urlBox.innerText = currentUrl;
-
-      qrBox.innerHTML = '';
-      if (window.QRCode) {
-        new window.QRCode(qrBox, {
-          text: currentUrl,
-          width: 180,
-          height: 180,
-          colorDark: '#0f172a',
-          colorLight: '#ffffff'
-        });
-      }
-
-      modal.classList.add('active');
-    }
 
     function closeModals() {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
