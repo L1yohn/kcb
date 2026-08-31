@@ -35,13 +35,19 @@
   };
 
   // 初始化入口
-  document.addEventListener('DOMContentLoaded', () => {
+  function init() {
     initTheme();
     refreshRealTimeState();
     bindEvents();
     renderAll();
     startStatusTicker();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
   // 刷新当前真实时间、周次和星期
   function refreshRealTimeState() {
