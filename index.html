@@ -65,14 +65,15 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
 }
 
 html, body {
-  touch-action: manipulation;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overscroll-behavior-y: none;
+}
+
+button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
+  touch-action: manipulation;
 }
 
 body {
@@ -1641,23 +1642,16 @@ body {
       startStatusTicker();
     }
 
-    // 彻底禁止双击放大、双指捏合手势缩放 (Pinch-to-zoom / Gesture zoom)
+    // 禁止双指手势缩放 (Pinch-to-zoom / Gesture zoom)，同时完全保留单指原生平滑滑动与下拉刷新 (Pull-to-refresh)
     (function disableZoom() {
-      let lastTouchEnd = 0;
-      document.addEventListener('touchend', function(e) {
-        const now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-          e.preventDefault();
-        }
-        lastTouchEnd = now;
-      }, { passive: false });
-
+      // 拦截双指/多指捏合触摸 (不影响单指下拉与滑动)
       document.addEventListener('touchstart', function(e) {
         if (e.touches && e.touches.length > 1) {
           e.preventDefault();
         }
       }, { passive: false });
 
+      // 拦截 Safari 双指手势缩放
       document.addEventListener('gesturestart', function(e) {
         e.preventDefault();
       }, { passive: false });
