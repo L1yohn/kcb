@@ -20,18 +20,33 @@
     getAdjustmentInfo
   } = window.KCB_DATA;
 
+  function getStorage(key, fallback) {
+    try {
+      const val = localStorage.getItem(key);
+      return val !== null ? val : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function setStorage(key, val) {
+    try {
+      localStorage.setItem(key, val);
+    } catch (e) {}
+  }
+
   // 全局响应式状态
   const state = {
     activeTab: 'today',
-    semesterStartDate: localStorage.getItem('kcb_start_date') || DEFAULT_SEMESTER_START_DATE,
+    semesterStartDate: getStorage('kcb_start_date', DEFAULT_SEMESTER_START_DATE),
     currentWeek: 1,
     selectedWeek: 1,
     todayDay: 1,
     selectedDay: 1,
     filterOnlyActiveGrid: true,
     showWeekends: false,
-    theme: localStorage.getItem('kcb_theme') || 'auto',
-    timeSlots: JSON.parse(localStorage.getItem('kcb_time_slots') || 'null') || DEFAULT_TIME_SLOTS
+    theme: getStorage('kcb_theme', 'auto'),
+    timeSlots: DEFAULT_TIME_SLOTS
   };
 
   // 初始化入口
