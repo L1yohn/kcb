@@ -5,13 +5,45 @@
   // 默认学期起始日 (2026-08-31 为第1周周一，9月7日为第2周周一)
   const DEFAULT_SEMESTER_START_DATE = '2026-08-31';
 
+  // 智能作息时间计算：支持夏季 (5.1-10.1)、冬季 (10.1-5.1) 及 周五/周六下午提前作息
+  function getTimeSlot(section, dateStr, day) {
+    const md = dateStr ? dateStr.slice(5) : '09-01';
+    const isSummer = (md >= '05-01' && md < '10-01');
+    const isFriOrSat = (day === 5 || day === 6);
+
+    if (section === 1) {
+      return { section: 1, periods: '1-2节', start: '08:20', end: '10:00', timeDesc: '08:20 - 10:00', part: 'morning' };
+    } else if (section === 2) {
+      return { section: 2, periods: '3-4节', start: '10:30', end: '12:10', timeDesc: '10:30 - 12:10', part: 'morning' };
+    } else if (section === 3) {
+      if (isFriOrSat) {
+        return { section: 3, periods: '5-6节', start: '13:10', end: '14:50', timeDesc: '13:10 - 14:50', part: 'afternoon', note: '周五/六下午作息' };
+      }
+      return isSummer
+        ? { section: 3, periods: '5-6节', start: '14:30', end: '16:10', timeDesc: '14:30 - 16:10', part: 'afternoon', note: '夏季作息' }
+        : { section: 3, periods: '5-6节', start: '14:00', end: '15:40', timeDesc: '14:00 - 15:40', part: 'afternoon', note: '冬季作息' };
+    } else if (section === 4) {
+      if (isFriOrSat) {
+        return { section: 4, periods: '7-8节', start: '15:20', end: '17:00', timeDesc: '15:20 - 17:00', part: 'afternoon', note: '周五/六下午作息' };
+      }
+      return isSummer
+        ? { section: 4, periods: '7-8节', start: '16:40', end: '18:20', timeDesc: '16:40 - 18:20', part: 'afternoon', note: '夏季作息' }
+        : { section: 4, periods: '7-8节', start: '16:10', end: '17:50', timeDesc: '16:10 - 17:50', part: 'afternoon', note: '冬季作息' };
+    } else if (section === 5) {
+      return isSummer
+        ? { section: 5, periods: '9-10节', start: '19:20', end: '21:00', timeDesc: '19:20 - 21:00', part: 'evening', note: '夏季作息' }
+        : { section: 5, periods: '9-10节', start: '19:00', end: '20:40', timeDesc: '19:00 - 20:40', part: 'evening', note: '冬季作息' };
+    }
+    return { section, periods: `${section*2-1}-${section*2}节`, start: '08:20', end: '10:00', timeDesc: '' };
+  }
+
   // 默认作息时间配置 (大节次: 1-2, 3-4, 5-6, 7-8, 9-10)
   const DEFAULT_TIME_SLOTS = [
-    { section: 1, periods: '1-2节', start: '08:00', end: '09:35', timeDesc: '08:00 - 09:35', part: 'morning' },
-    { section: 2, periods: '3-4节', start: '10:05', end: '11:40', timeDesc: '10:05 - 11:40', part: 'morning' },
-    { section: 3, periods: '5-6节', start: '14:00', end: '15:35', timeDesc: '14:00 - 15:35', part: 'afternoon' },
-    { section: 4, periods: '7-8节', start: '15:55', end: '17:30', timeDesc: '15:55 - 17:30', part: 'afternoon' },
-    { section: 5, periods: '9-10节', start: '19:00', end: '20:35', timeDesc: '19:00 - 20:35', part: 'evening' }
+    { section: 1, periods: '1-2节', start: '08:20', end: '10:00', timeDesc: '08:20 - 10:00', part: 'morning' },
+    { section: 2, periods: '3-4节', start: '10:30', end: '12:10', timeDesc: '10:30 - 12:10', part: 'morning' },
+    { section: 3, periods: '5-6节', start: '14:00', end: '15:40', timeDesc: '14:00/14:30', part: 'afternoon' },
+    { section: 4, periods: '7-8节', start: '16:10', end: '17:50', timeDesc: '16:10/16:40', part: 'afternoon' },
+    { section: 5, periods: '9-10节', start: '19:00', end: '20:40', timeDesc: '19:00/19:20', part: 'evening' }
   ];
 
   // 课程卡片颜色主题库
@@ -423,6 +455,7 @@
     getDateByWeekAndDay,
     formatDateString,
     getHolidayInfo,
-    getAdjustmentInfo
+    getAdjustmentInfo,
+    getTimeSlot
   };
 })(typeof window !== 'undefined' ? window : global);
