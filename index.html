@@ -945,30 +945,30 @@ body {
     const RAW_COURSES = [
       // 星期一
       { id: 'mon-34-1', name: '计算机组成原理', day: 1, section: 2, periods: '3-4节', weeksRaw: '2-18双(3,4)', weeks: [2, 4, 6, 8, 10, 12, 14, 16, 18], teacher: '胡美辰', room: 'C403', type: '专业必修' },
-      { id: 'mon-34-2', name: '操作系统', day: 1, section: 2, periods: '3-4节', weeksRaw: '3,7-17单(3,4)', weeks: [3, 7, 9, 11, 13, 15, 17], teacher: '魏金玉', room: 'C403', type: '专业必修' },
-      { id: 'mon-78-1', name: '马克思主义基本原理', day: 1, section: 4, periods: '7-8节', weeksRaw: '3,7-17单(7,8)', weeks: [3, 7, 9, 11, 13, 15, 17], teacher: '邓君兰', room: 'D401', type: '通识必修' },
+      { id: 'mon-34-2', name: '操作系统', day: 1, section: 2, periods: '3-4节', weeksRaw: '3,5,7-17单(3,4)', weeks: [3, 5, 7, 9, 11, 13, 15, 17], teacher: '魏金玉', room: 'C403', type: '专业必修' },
+      { id: 'mon-78-1', name: '马克思主义基本原理', day: 1, section: 4, periods: '7-8节', weeksRaw: '3,5,7-17单(7,8)', weeks: [3, 5, 7, 9, 11, 13, 15, 17], teacher: '邓君兰', room: 'D401', type: '通识必修' },
       { id: 'mon-910-1', name: '形势与政策Ⅴ', day: 1, section: 5, periods: '9-10节', weeksRaw: '13-14(9,10)', weeks: [13, 14], teacher: '代正榆', room: '毓秀201', type: '通识必修' },
       { id: 'mon-910-2', name: '大学生心理健康教育（心理危机）', day: 1, section: 5, periods: '9-10节', weeksRaw: '7-8(9,10)', weeks: [7, 8], teacher: '蒲昭君', room: '毓秀201', type: '通识必修' },
 
       // 星期二
       { id: 'tue-34-1', name: 'Java语言程序设计', day: 2, section: 2, periods: '3-4节', weeksRaw: '2-18双(3,4)', weeks: [2, 4, 6, 8, 10, 12, 14, 16, 18], teacher: '田小东', room: 'A502', type: '专业必修' },
-      { id: 'tue-56-1', name: '软件项目管理', day: 2, section: 3, periods: '5-6节', weeksRaw: '2-4,6-18(5,6)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '张玉洁', room: '毓秀楼二机房', type: '专业必修' },
-      { id: 'tue-78-1', name: '马克思主义基本原理', day: 2, section: 4, periods: '7-8节', weeksRaw: '2-4,6-18(7,8)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '邓君兰', room: 'C609', type: '通识必修' },
-      { id: 'tue-910-1', name: 'Hadoop大数据基础应用', day: 2, section: 5, periods: '9-10节', weeksRaw: '2-4,6-18(9,10)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '卢文婷', room: 'A502', type: '专业必修' },
+      { id: 'tue-56-1', name: '软件项目管理', day: 2, section: 3, periods: '5-6节', weeksRaw: '2-18(5,6)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '张玉洁', room: '毓秀楼二机房', type: '专业必修' },
+      { id: 'tue-78-1', name: '马克思主义基本原理', day: 2, section: 4, periods: '7-8节', weeksRaw: '2-18(7,8)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '邓君兰', room: 'C609', type: '通识必修' },
+      { id: 'tue-910-1', name: 'Hadoop大数据基础应用', day: 2, section: 5, periods: '9-10节', weeksRaw: '2-18(9,10)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '卢文婷', room: 'A502', type: '专业必修' },
 
       // 星期三
-      { id: 'wed-34-1', name: 'Java语言程序设计', day: 3, section: 2, periods: '3-4节', weeksRaw: '2-4,6-18(3,4)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '田小东', room: 'A502', type: '专业必修' },
-      { id: 'wed-78-1', name: 'Python数据挖掘与可视化', day: 3, section: 4, periods: '7-8节', weeksRaw: '2-4,6-18(7,8)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '吴宇', room: 'A506', type: '专业选修' },
-      { id: 'wed-910-1', name: '计算机组成原理', day: 3, section: 5, periods: '9-10节', weeksRaw: '2-4,6-18(9,10)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '胡美辰', room: '钟灵楼（6号楼）204', type: '专业必修' },
+      { id: 'wed-34-1', name: 'Java语言程序设计', day: 3, section: 2, periods: '3-4节', weeksRaw: '2-18(3,4)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '田小东', room: 'A502', type: '专业必修' },
+      { id: 'wed-78-1', name: 'Python数据挖掘与可视化', day: 3, section: 4, periods: '7-8节', weeksRaw: '2-18(7,8)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '吴宇', room: 'A506', type: '专业选修' },
+      { id: 'wed-910-1', name: '计算机组成原理', day: 3, section: 5, periods: '9-10节', weeksRaw: '2-18(9,10)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '胡美辰', room: '钟灵楼（6号楼）204', type: '专业必修' },
 
       // 星期四
-      { id: 'thu-12-1', name: '软件建模原理', day: 4, section: 1, periods: '1-2节', weeksRaw: '2-4,6-18(1,2)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '魏青锦', room: '毓秀楼五机房', type: '专业必修' },
-      { id: 'thu-34-1', name: '操作系统', day: 4, section: 2, periods: '3-4节', weeksRaw: '2-4,6-18(3,4)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '魏金玉', room: 'C402', type: '专业必修' },
-      { id: 'thu-56-1', name: '软件质量保证与测试', day: 4, section: 3, periods: '5-6节', weeksRaw: '3,7-17单(5,6)', weeks: [3, 7, 9, 11, 13, 15, 17], teacher: '董波', room: 'A506', type: '专业必修' },
-      { id: 'thu-78-1', name: '软件工程专业英语', day: 4, section: 4, periods: '7-8节', weeksRaw: '2-4,6-18(7,8)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '葛腾飞', room: 'C312', type: '专业必修' },
+      { id: 'thu-12-1', name: '软件建模原理', day: 4, section: 1, periods: '1-2节', weeksRaw: '2-18(1,2)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '魏青锦', room: '毓秀楼五机房', type: '专业必修' },
+      { id: 'thu-34-1', name: '操作系统', day: 4, section: 2, periods: '3-4节', weeksRaw: '2-18(3,4)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '魏金玉', room: 'C402', type: '专业必修' },
+      { id: 'thu-56-1', name: '软件质量保证与测试', day: 4, section: 3, periods: '5-6节', weeksRaw: '3,5,7-17单(5,6)', weeks: [3, 5, 7, 9, 11, 13, 15, 17], teacher: '董波', room: 'A506', type: '专业必修' },
+      { id: 'thu-78-1', name: '软件工程专业英语', day: 4, section: 4, periods: '7-8节', weeksRaw: '2-18(7,8)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '葛腾飞', room: 'C312', type: '专业必修' },
 
       // 星期五
-      { id: 'fri-34-1', name: '软件质量保证与测试', day: 5, section: 2, periods: '3-4节', weeksRaw: '2-4,6-18(3,4)', weeks: [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '董波', room: '毓秀楼一机房', type: '专业必修' }
+      { id: 'fri-34-1', name: '软件质量保证与测试', day: 5, section: 2, periods: '3-4节', weeksRaw: '2-18(3,4)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '董波', room: '毓秀楼一机房', type: '专业必修' }
     ];
 
     const WEEK_DAYS = [
