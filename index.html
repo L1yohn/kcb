@@ -865,7 +865,10 @@ body {
     <!-- 视图 2: 周课表网格 (Weekly Grid View) -->
     <main id="view-week" class="view-content">
       <div class="grid-controls-bar">
-        <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">🗓️ 本周全景课表</span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 700; color: var(--text-main);" id="week-grid-title">🗓️ 本周全景课表</span>
+          <button id="week-back-today-btn" onclick="window.goToCurrentWeek()" class="icon-btn" style="height:24px; font-size:11px; padding:0 8px; border-radius:12px; width:auto; background:var(--primary-light); color:var(--primary); border:1px solid var(--primary); display:none; cursor:pointer;">📍 回到本周</button>
+        </div>
         <button class="grid-filter-btn active" id="grid-toggle-filter">
           ✅ 仅看本周有课
         </button>
@@ -1173,15 +1176,37 @@ body {
       if (tab === 'today') {
         goToToday();
       } else if (tab === 'week') {
-        renderWeekGrid();
+        goToCurrentWeek();
       }
     }
 
+    // 精准回到真实今日
     window.goToToday = function() {
       refreshRealTimeState();
       renderWeekScroller();
       renderTodayView();
       renderWeekGrid();
+    };
+
+    // 精准跳转到真实本周周课表
+    window.goToCurrentWeek = function() {
+      refreshRealTimeState();
+      state.selectedWeek = state.currentWeek;
+      renderWeekScroller();
+      renderTodayView();
+      renderWeekGrid();
+      setTimeout(() => {
+        const scroller = document.getElementById('week-scroller');
+        const activePill = scroller ? scroller.querySelector('.week-pill.active') : null;
+        if (activePill) {
+          activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+        const gridWrapper = document.getElementById('timetable-scroll-wrapper');
+        const todayCell = gridWrapper ? gridWrapper.querySelector('.grid-header-cell.is-today') : null;
+        if (todayCell && gridWrapper) {
+          gridWrapper.scrollTo({ left: Math.max(0, todayCell.offsetLeft - 50), behavior: 'smooth' });
+        }
+      }, 50);
     };
 
     window.goToWeek = function(weekNum) {
@@ -1534,6 +1559,16 @@ body {
       });
 
       container.innerHTML = gridHtml;
+
+      // 更新顶部周课表标题与快速回到本周按钮
+      const gridTitle = document.getElementById('week-grid-title');
+      const backTodayBtn = document.getElementById('week-back-today-btn');
+      if (gridTitle) {
+        gridTitle.innerText = `🗓️ 第 ${state.selectedWeek} 周课表 ${state.selectedWeek === state.currentWeek ? '(本周)' : ''}`;
+      }
+      if (backTodayBtn) {
+        backTodayBtn.style.display = (state.selectedWeek !== state.currentWeek) ? 'inline-flex' : 'none';
+      }
     }
 
     window.showCourseDetail = function(courseId) {
