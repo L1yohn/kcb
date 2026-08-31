@@ -582,18 +582,28 @@ body {
 .grid-card-name {
   font-size: 11px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.grid-card-time {
+  font-size: 8.5px;
+  font-weight: 600;
+  opacity: 0.85;
+  margin: 1px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
 }
 
 .grid-card-room {
   font-size: 9px;
   font-weight: 600;
   opacity: 0.85;
-  margin-top: 2px;
+  margin-top: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1456,12 +1466,20 @@ body {
         `;
       }
 
-      state.timeSlots.forEach(slot => {
+      // 计算当前所查看周的代表日期（周一），获取该周的夏/冬季作息
+      const weekMonDate = getDateByWeekAndDay(state.semesterStartDate, state.selectedWeek, 1);
+      const weekMonDateStr = formatDateString(weekMonDate);
+      const isSummerWeek = (weekMonDateStr.slice(5) >= '05-01' && weekMonDateStr.slice(5) < '10-01');
+
+      [1, 2, 3, 4, 5].forEach(section => {
+        const refSlot = getTimeSlot(section, weekMonDateStr, 1);
+
         gridHtml += `
           <div class="grid-time-cell">
-            <span>${slot.section * 2 - 1}-${slot.section * 2}</span>
-            <span class="grid-time-slot">${slot.start}</span>
-            <span class="grid-time-slot">${slot.end}</span>
+            <span style="font-weight:700;">${section * 2 - 1}-${section * 2}</span>
+            <span class="grid-time-slot">${refSlot.start}</span>
+            <span class="grid-time-slot">${refSlot.end}</span>
+            <span style="font-size:8px; color:var(--primary); opacity:0.8; margin-top:2px;">${isSummerWeek ? '夏季' : '冬季'}</span>
           </div>
         `;
 
@@ -1485,7 +1503,7 @@ body {
               targetDay = colAdj.replaceDay;
             }
 
-            const cellCourses = RAW_COURSES.filter(c => c.day === targetDay && c.section === slot.section);
+            const cellCourses = RAW_COURSES.filter(c => c.day === targetDay && c.section === section);
 
             if (cellCourses.length > 0) {
               const activeCourses = cellCourses.filter(c => isCourseActiveInWeek(c, state.selectedWeek));
@@ -1495,6 +1513,7 @@ body {
 
               coursesToDisplay.forEach(c => {
                 const isActive = isCourseActiveInWeek(c, state.selectedWeek);
+                const cardSlot = getTimeSlot(c.section, colDateStr, targetDay);
                 const color = COURSE_COLORS[c.name] || { bg: 'rgba(99,102,241,0.1)', text: '#4f46e5', border: '#6366f1', solid: '#4f46e5' };
                 
                 gridHtml += `
@@ -1502,6 +1521,7 @@ body {
                        onclick="window.showCourseDetail('${c.id}')"
                        style="background: ${color.bg}; border-color: ${color.border}; color: ${color.text};">
                     <div class="grid-card-name">${colAdj ? '⏰ ' : ''}${c.name}</div>
+                    <div class="grid-card-time">${cardSlot.start}-${cardSlot.end}</div>
                     <div class="grid-card-room">📍${c.room}</div>
                   </div>
                 `;
