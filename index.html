@@ -12,54 +12,70 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
   <style>
 /* ==========================================================================
-   课程表 Web App - 现代化移动端与响应式样式
+   Anthropic / Claude Aesthetic - Warm Minimalist Design System
+   "warm minimalism + editorial typography + generous whitespace + restrained interaction"
    ========================================================================== */
 
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-light: #eef2ff;
-  --accent: #06b6d4;
-  --bg-main: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-card-subtle: #f1f5f9;
-  --bg-card-hover: #f8fafc;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
-  --border-color: #e2e8f0;
-  --border-subtle: #f1f5f9;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* Warm Neutral Palette */
+  --bg-main: #F7F6F2;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #EFECE6;
+  --bg-muted: #E6E2D8;
+  --text-primary: #262522;
+  --text-secondary: #6F6D67;
+  --text-tertiary: #9A978F;
+  --border-color: #E5E2DB;
+  --border-subtle: #EDEAE3;
+
+  /* Terracotta Accent */
+  --accent: #C96A3D;
+  --accent-hover: #B85C32;
+  --accent-light: #FAF2EE;
+  --accent-border: #E8D5CB;
+
+  /* Status Colors */
+  --status-ongoing: #C96A3D;
+  --status-upcoming: #8A6D3B;
+  --status-holiday: #A64434;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-serif: "Newsreader", "Georgia", "Songti SC", "SimSun", serif;
+
+  /* Geometry */
+  --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
+  --btn-height: 42px;
+  --content-max-width: 1140px;
   --tab-bar-height: 64px;
-  --header-height: 56px;
-  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
 [data-theme="dark"] {
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --primary-light: rgba(99, 102, 241, 0.15);
-  --accent: #22d3ee;
-  --bg-main: #090d16;
-  --bg-card: #131b2e;
-  --bg-card-subtle: #1e293b;
-  --bg-card-hover: #1e293b;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-light: #64748b;
-  --border-color: #1e293b;
-  --border-subtle: #1e293b;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  --bg-main: #181715;
+  --bg-surface: #22201D;
+  --bg-subtle: #2C2A26;
+  --bg-muted: #373530;
+  --text-primary: #EDEAE4;
+  --text-secondary: #9E9B93;
+  --text-tertiary: #6E6B64;
+  --border-color: #33312B;
+  --border-subtle: #292723;
+
+  --accent: #D97748;
+  --accent-hover: #E28456;
+  --accent-light: rgba(217, 119, 72, 0.12);
+  --accent-border: #4D3324;
+
+  --status-ongoing: #D97748;
+  --status-upcoming: #D4A853;
+  --status-holiday: #D66353;
 }
 
+/* Base Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -72,87 +88,142 @@ html, body {
   text-size-adjust: 100%;
 }
 
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: -0.012em;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  display: flex;
+  justify-content: center;
+}
+
 button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   touch-action: manipulation;
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  overflow-x: hidden;
-  font-size: 14px;
-  line-height: 1.5;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* 整体移动端容器约束 (在PC端自适应为居中手机卡片，在手机端全屏铺满) */
+/* App Container - Spacious Editorial Canvas */
 .app-container {
   width: 100%;
-  max-width: 520px;
+  max-width: var(--content-max-width);
   min-height: 100vh;
-  background-color: var(--bg-main);
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
+  padding-bottom: calc(var(--tab-bar-height) + 24px);
   position: relative;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
-  padding-bottom: calc(var(--tab-bar-height) + 16px);
 }
 
 @media (min-width: 768px) {
   .app-container {
-    max-width: 600px;
+    padding: 0 36px;
+    padding-bottom: 56px;
   }
 }
 
 /* ==========================================
-   顶部导航与周次切换
+   顶部导航栏 (Header)
    ========================================== */
 .app-header {
   position: sticky;
   top: 0;
-  z-index: 40;
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  z-index: 50;
+  background: var(--bg-main);
   border-bottom: 1px solid var(--border-color);
-  padding: 12px 16px 8px;
+  padding: 16px 0 12px;
+  margin-bottom: 24px;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .brand-info {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-weight: bold;
+}
+
+.brand-title-wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 .brand-title {
   font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text-main);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-top: -1px;
+}
+
+/* 桌面端居中 Tab 导航 */
+.desktop-tab-nav {
+  display: none;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 4px;
+}
+
+@media (min-width: 768px) {
+  .desktop-tab-nav {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.desktop-tab-nav .tab-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease-out;
+}
+
+.desktop-tab-nav .tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.desktop-tab-nav .tab-btn.active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  font-weight: 600;
 }
 
 .header-actions {
@@ -162,35 +233,38 @@ body {
 }
 
 .icon-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-  color: var(--text-muted);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 16px;
+  transition: background-color 0.18s ease-out, border-color 0.18s ease-out;
 }
 
-.icon-btn:hover, .icon-btn:active {
-  background: var(--bg-card-subtle);
-  color: var(--primary);
-  transform: scale(0.96);
+.icon-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--text-tertiary);
 }
 
-/* 周次快速横向滑动选择栏 */
+/* 周次水平选择条 */
+.week-scroller-wrap {
+  width: 100%;
+}
+
 .week-scroller-container {
   display: flex;
-  align-items: center;
   gap: 6px;
   overflow-x: auto;
-  padding: 4px 0 2px;
+  padding: 2px 0 4px;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .week-scroller-container::-webkit-scrollbar {
@@ -199,153 +273,158 @@ body {
 
 .week-pill {
   flex-shrink: 0;
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
   font-weight: 500;
-  background: var(--bg-card-subtle);
-  color: var(--text-muted);
-  border: 1px solid transparent;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   cursor: pointer;
-  transition: all 0.2s ease;
   white-space: nowrap;
+  transition: all 0.18s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.week-pill:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
 }
 
 .week-pill.active {
-  background: var(--primary);
-  color: #ffffff;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-color: var(--text-primary);
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
 }
 
-.week-pill.current-tag {
-  border-color: var(--primary);
+.week-pill.current-tag:not(.active) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
 }
 
 /* ==========================================
-   页面视图主体
+   视图切换 (View Tabs)
    ========================================== */
 .view-content {
-  flex: 1;
-  padding: 12px 14px;
   display: none;
+  opacity: 0;
+  animation: fadeInContent 0.22s ease-out forwards;
 }
 
 .view-content.active {
   display: block;
-  animation: fadeIn 0.25s ease forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================
-   视图 1: 今日视图 (Today View)
+   视图 1: 今日日程 (Today View)
    ========================================== */
 .today-summary-card {
-  background: linear-gradient(135deg, var(--primary), #3730a3);
-  color: white;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.4);
+  padding: 24px;
+  margin-bottom: 24px;
   position: relative;
-  overflow: hidden;
-  min-height: 80px;
-}
-
-[data-theme="dark"] .today-summary-card {
-  background: linear-gradient(135deg, #4338ca, #1e1b4b);
-}
-
-.today-summary-card::after {
-  content: '📚';
-  position: absolute;
-  right: -10px;
-  bottom: -15px;
-  font-size: 84px;
-  opacity: 0.15;
-  pointer-events: none;
+  transition: all 0.2s ease-out;
 }
 
 .today-date-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .today-date {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 .today-week-badge {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  font-size: 12px;
   padding: 4px 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-full);
-  font-size: 11px;
-  font-weight: 600;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .today-status-text {
-  font-size: 13px;
-  opacity: 0.9;
-  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-/* 星期快捷切换器 */
+.today-status-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* 星期快捷切换按键 */
 .weekday-switcher {
-  display: flex;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 4px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow-sm);
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 24px;
 }
 
 .weekday-btn {
-  flex: 1;
-  text-align: center;
-  padding: 8px 2px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  background: transparent;
-  border: none;
-  font-size: 12px;
+  padding: 8px 2px;
+  text-align: center;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s ease-out;
+}
+
+.weekday-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
 }
 
 .weekday-btn.active {
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 700;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-color: var(--text-primary);
+  font-weight: 600;
 }
 
-.weekday-btn.today-highlight {
-  position: relative;
+.weekday-btn.active span {
+  color: var(--bg-main) !important;
+  opacity: 0.85;
 }
 
-.weekday-btn.today-highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--primary);
+.weekday-btn.today-highlight:not(.active) {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
-/* 今日课程时间轴卡片 */
+/* 今日课程时间轴列表 */
 .timeline-list {
   display: flex;
   flex-direction: column;
@@ -353,48 +432,52 @@ body {
 }
 
 .course-item-card {
-  background: var(--bg-card);
+  background: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
-  box-shadow: var(--shadow-sm);
+  padding: 16px 20px;
   display: flex;
-  gap: 14px;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 18px;
   cursor: pointer;
+  transition: all 0.18s ease-out;
+  position: relative;
 }
 
 .course-item-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--text-tertiary);
+  background: var(--bg-surface);
+}
+
+.course-item-card:active {
+  transform: translateY(1px);
 }
 
 .course-item-card.is-inactive {
-  opacity: 0.55;
-  background: var(--bg-card-subtle);
-  border-style: dashed;
+  opacity: 0.45;
+  background: var(--bg-subtle);
 }
 
 .course-item-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-width: 65px;
-  padding-right: 12px;
-  border-right: 1px dashed var(--border-color);
+  align-items: flex-start;
+  min-width: 82px;
+  border-right: 1px solid var(--border-color);
+  padding-right: 14px;
 }
 
 .time-slot-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-main);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
 }
 
 .time-slot-range {
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
   margin-top: 2px;
 }
 
@@ -402,38 +485,43 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  min-width: 0;
 }
 
 .course-header-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 6px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
 .course-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.3;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .course-tag {
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
   white-space: nowrap;
-  font-weight: 600;
 }
 
 .course-meta-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-muted);
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
 }
 
 .meta-item {
@@ -442,52 +530,55 @@ body {
   gap: 4px;
 }
 
-.meta-icon {
-  font-size: 12px;
-}
-
+/* 空状态卡片 */
 .empty-course-state {
-  text-align: center;
-  padding: 48px 16px;
-  color: var(--text-muted);
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
+  background: var(--bg-surface);
   border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 48px 24px;
+  text-align: center;
 }
 
 .empty-icon {
-  font-size: 42px;
+  font-size: 36px;
   margin-bottom: 12px;
 }
 
 /* ==========================================
-   视图 2: 周课表网格 (Weekly Grid View)
+   视图 2: 周课表全景 (Weekly Grid View)
    ========================================== */
 .grid-controls-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .grid-filter-btn {
   font-size: 12px;
-  padding: 6px 12px;
-  border-radius: var(--radius-full);
-  background: var(--bg-card);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  color: var(--text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  transition: all 0.18s ease-out;
+}
+
+.grid-filter-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
 }
 
 .grid-filter-btn.active {
-  background: var(--primary-light);
-  color: var(--primary);
-  border-color: var(--primary);
+  background: var(--bg-subtle);
+  border-color: var(--border-color);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -495,103 +586,99 @@ body {
   width: 100%;
   overflow-x: auto;
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: var(--border-color);
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
+  -webkit-overflow-scrolling: touch;
 }
 
 .timetable-grid {
   display: grid;
-  grid-template-columns: 38px repeat(5, minmax(68px, 1fr));
-  min-width: 380px;
-  border-collapse: collapse;
+  grid-template-columns: 56px repeat(5, minmax(110px, 1fr));
+  min-width: 600px;
+  gap: 1px;
 }
 
 .show-weekends .timetable-grid {
-  grid-template-columns: 38px repeat(7, minmax(60px, 1fr));
-  min-width: 460px;
+  grid-template-columns: 56px repeat(7, minmax(96px, 1fr));
+  min-width: 720px;
+}
+
+@media (min-width: 992px) {
+  .timetable-grid {
+    min-width: 100%;
+    grid-template-columns: 64px repeat(5, 1fr);
+  }
+  .show-weekends .timetable-grid {
+    grid-template-columns: 64px repeat(7, 1fr);
+  }
 }
 
 .grid-header-cell {
-  background: var(--bg-card-subtle);
-  padding: 8px 2px;
+  background: var(--bg-subtle);
+  padding: 12px 6px;
   text-align: center;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-}
-
-.grid-header-cell:last-child {
-  border-right: none;
+  color: var(--text-primary);
 }
 
 .grid-header-cell.is-today {
-  color: var(--primary);
-  background: var(--primary-light);
-  font-weight: 700;
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 .grid-time-cell {
-  background: var(--bg-card-subtle);
+  background: var(--bg-subtle);
+  padding: 10px 4px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4px 2px;
-  border-bottom: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
   font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  min-height: 84px;
+  color: var(--text-secondary);
 }
 
 .grid-time-slot {
-  font-size: 9px;
-  color: var(--text-light);
-  transform: scale(0.9);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
 }
 
 .grid-course-slot {
-  position: relative;
-  padding: 3px;
-  border-bottom: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  min-height: 84px;
-  background: var(--bg-card);
+  background: var(--bg-surface);
+  min-height: 98px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
-.grid-course-slot:last-child {
-  border-right: none;
-}
-
-/* 课表小格内卡片 */
 .grid-card {
   flex: 1;
   border-radius: var(--radius-sm);
-  padding: 5px 4px;
+  padding: 7px 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  overflow: hidden;
+  transition: all 0.18s ease-out;
   border: 1px solid transparent;
+  min-height: 84px;
+}
+
+.grid-card:hover {
+  filter: brightness(0.97);
 }
 
 .grid-card:active {
-  transform: scale(0.95);
+  transform: translateY(1px);
 }
 
 .grid-card-name {
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -599,94 +686,78 @@ body {
 }
 
 .grid-card-time {
-  font-size: 8.5px;
-  font-weight: 600;
-  opacity: 0.85;
-  margin: 1px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: -0.2px;
-  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.8;
+  margin: 2px 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .grid-card-room {
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 10.5px;
   opacity: 0.85;
-  margin-top: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .grid-card.inactive-week {
-  opacity: 0.38;
-  filter: grayscale(0.6);
-  border: 1px dashed var(--text-light);
+  opacity: 0.35;
+  filter: grayscale(0.7);
+  border: 1px dashed var(--border-color);
 }
 
 /* ==========================================
-   底部 Tab 导航栏
+   移动端底部导航栏 (Mobile Tab Bar)
    ========================================== */
 .bottom-tab-bar {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 520px;
+  left: 0;
+  right: 0;
   height: var(--tab-bar-height);
-  background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-surface);
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 50;
-  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 60;
 }
 
 @media (min-width: 768px) {
   .bottom-tab-bar {
-    max-width: 600px;
+    display: none;
   }
 }
 
-.tab-btn {
+.bottom-tab-bar .tab-btn {
   flex: 1;
   height: 100%;
+  border: none;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.2s;
   gap: 3px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease-out;
+}
+
+.bottom-tab-bar .tab-btn.active {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .tab-icon {
-  font-size: 20px;
-  transition: transform 0.2s;
-}
-
-.tab-label {
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.tab-btn.active {
-  color: var(--primary);
-}
-
-.tab-btn.active .tab-icon {
-  transform: scale(1.15);
+  font-size: 18px;
 }
 
 /* ==========================================
-   弹窗与抽屉 (Modal & Bottom Sheet)
+   模态弹窗 (Modal / Bottom Sheet)
    ========================================== */
 .modal-overlay {
   position: fixed;
@@ -694,16 +765,14 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: flex-end;
   justify-content: center;
   z-index: 100;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease-out;
 }
 
 .modal-overlay.active {
@@ -712,15 +781,27 @@ body {
 }
 
 .modal-sheet {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
   width: 100%;
-  max-width: 520px;
-  background: var(--bg-card);
-  border-radius: 20px 20px 0 0;
-  padding: 20px;
+  max-width: 540px;
+  padding: 24px;
+  transform: translateY(100%);
+  transition: transform 0.22s ease-out;
   max-height: 85vh;
   overflow-y: auto;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .modal-overlay {
+    align-items: center;
+  }
+  .modal-sheet {
+    border-radius: var(--radius-lg);
+    transform: translateY(12px);
+  }
 }
 
 .modal-overlay.active .modal-sheet {
@@ -730,113 +811,91 @@ body {
 .sheet-handle {
   width: 36px;
   height: 4px;
+  border-radius: var(--radius-full);
   background: var(--border-color);
-  border-radius: 2px;
   margin: 0 auto 16px;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .modal-title {
   font-size: 18px;
-  font-weight: 800;
-  color: var(--text-main);
-  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .modal-close-btn {
-  background: var(--bg-card-subtle);
-  border: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  font-size: 18px;
+  color: var(--text-secondary);
   cursor: pointer;
-  font-size: 16px;
+  line-height: 1;
 }
 
 .detail-item-card {
-  background: var(--bg-card-subtle);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-  margin-bottom: 10px;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.detail-item-card:last-of-type {
+  border-bottom: none;
 }
 
 .detail-icon {
-  font-size: 20px;
-  color: var(--primary);
+  font-size: 17px;
+  color: var(--text-tertiary);
+  margin-top: 1px;
 }
 
 .detail-label {
-  font-size: 11px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
 }
 
 .detail-val {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.qr-preview-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  margin: 10px 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .primary-btn {
   width: 100%;
-  padding: 12px;
-  background: var(--primary);
-  color: #ffffff;
+  height: var(--btn-height);
+  background: var(--accent);
+  color: #FFFFFF;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-  transition: all 0.2s;
-  margin-top: 10px;
+  transition: background-color 0.18s ease-out;
+  margin-top: 18px;
 }
 
-.secondary-btn {
-  width: 100%;
-  padding: 10px;
-  background: var(--bg-card-subtle);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: all 0.2s;
-  margin-top: 8px;
+.primary-btn:hover {
+  background: var(--accent-hover);
 }
-  </style>
+</style>
 </head>
 <body>
 
@@ -846,8 +905,24 @@ body {
       <div class="header-top">
         <div class="brand-info">
           <div class="brand-icon">📚</div>
-          <div class="brand-title">学期课程表</div>
+          <div class="brand-title-wrap">
+            <div class="brand-title">学期课程表</div>
+            <div class="brand-subtitle">2026 秋季学期</div>
+          </div>
         </div>
+
+        <!-- 桌面端居中 Tab 导航 -->
+        <nav class="desktop-tab-nav">
+          <button class="tab-btn active" data-tab="today">
+            <span class="tab-icon">📅</span>
+            <span>今日日程</span>
+          </button>
+          <button class="tab-btn" data-tab="week">
+            <span class="tab-icon">🗓️</span>
+            <span>周课表</span>
+          </button>
+        </nav>
+
         <div class="header-actions">
           <button class="icon-btn" id="theme-toggle-btn" title="切换暗黑/浅色模式" aria-label="切换主题">🌓</button>
         </div>
@@ -957,19 +1032,19 @@ body {
       { section: 5, periods: '9-10节', start: '19:00', end: '20:40', timeDesc: '19:00/19:20' }
     ];
 
-    const COURSE_COLORS = {
-      '计算机组成原理': { bg: 'rgba(99, 102, 241, 0.12)', border: '#6366f1', text: '#4338ca', darkText: '#a5b4fc', solid: '#4f46e5' },
-      '操作系统': { bg: 'rgba(14, 165, 233, 0.12)', border: '#0ea5e9', text: '#0369a1', darkText: '#7dd3fc', solid: '#0284c7' },
-      'Java语言程序设计': { bg: 'rgba(245, 158, 11, 0.12)', border: '#f59e0b', text: '#b45309', darkText: '#fcd34d', solid: '#d97706' },
-      '软件建模原理': { bg: 'rgba(20, 184, 166, 0.12)', border: '#14b8a6', text: '#0f766e', darkText: '#5eead4', solid: '#0d9488' },
-      '软件项目管理': { bg: 'rgba(16, 185, 129, 0.12)', border: '#10b981', text: '#047857', darkText: '#6ee7b7', solid: '#059669' },
-      '软件质量保证与测试': { bg: 'rgba(34, 197, 94, 0.12)', border: '#22c55e', text: '#15803d', darkText: '#86efac', solid: '#16a34a' },
-      '马克思主义基本原理': { bg: 'rgba(239, 68, 68, 0.12)', border: '#ef4444', text: '#b91c1c', darkText: '#fca5a5', solid: '#dc2626' },
-      'Python数据挖掘与可视化': { bg: 'rgba(59, 130, 246, 0.12)', border: '#3b82f6', text: '#1d4ed8', darkText: '#93c5fd', solid: '#2563eb' },
-      '软件工程专业英语': { bg: 'rgba(168, 85, 247, 0.12)', border: '#a855f7', text: '#7e22ce', darkText: '#d8b4fe', solid: '#9333ea' },
-      'Hadoop大数据基础应用': { bg: 'rgba(139, 92, 246, 0.12)', border: '#8b5cf6', text: '#6d28d9', darkText: '#c4b5fd', solid: '#7c3aed' },
-      '大学生心理健康教育（心理危机）': { bg: 'rgba(236, 72, 153, 0.12)', border: '#ec4899', text: '#be185d', darkText: '#f472b6', solid: '#db2777' },
-      '形势与政策Ⅴ': { bg: 'rgba(249, 115, 22, 0.12)', border: '#f97316', text: '#c2410c', darkText: '#fdba74', solid: '#ea580c' }
+        const COURSE_COLORS = {
+      '计算机组成原理': { bg: '#EFF2F5', border: '#D4DCE2', text: '#3A5063', solid: '#4F6B85' },
+      '操作系统': { bg: '#F1F4EE', border: '#D6DDD0', text: '#43583E', solid: '#587452' },
+      'Java语言程序设计': { bg: '#F8F4EA', border: '#E7DECA', text: '#775F2A', solid: '#9B7E38' },
+      '软件建模原理': { bg: '#EEF4F3', border: '#D0DFDC', text: '#365752', solid: '#4A726C' },
+      '软件项目管理': { bg: '#FAF1EC', border: '#E9D6CB', text: '#824322', solid: '#C96A3D' },
+      '软件质量保证与测试': { bg: '#EFF3EC', border: '#D4DDD0', text: '#3F573B', solid: '#55724F' },
+      '马克思主义基本原理': { bg: '#F9ECE9', border: '#E8CECA', text: '#87362B', solid: '#B34A3C' },
+      'Python数据挖掘与可视化': { bg: '#EEF2F6', border: '#D3DCE5', text: '#344D66', solid: '#4B6A8A' },
+      '软件工程专业英语': { bg: '#F3EFF5', border: '#DDD5E1', text: '#5A4866', solid: '#7A648A' },
+      'Hadoop大数据基础应用': { bg: '#F3EFF7', border: '#DDD5E5', text: '#58446B', solid: '#745D8C' },
+      '大学生心理健康教育（心理危机）': { bg: '#F7EFF2', border: '#E7D5DC', text: '#784355', solid: '#9E5B72' },
+      '形势与政策Ⅴ': { bg: '#F9F1EB', border: '#EBDCCE', text: '#7F4E2B', solid: '#A8683B' }
     };
 
     const HOLIDAYS = [
@@ -1337,29 +1412,29 @@ body {
         }
 
         if (ongoingCourse) {
-          liveStatusText = `🔴 <strong>正在上课</strong>：${ongoingCourse.course.name} (${ongoingCourse.course.room}) · 剩 ${ongoingCourse.timeStat.remain} 分钟下课`;
+          liveStatusText = `<span style="color:var(--accent);font-weight:600;">● 正在上课</span>：<strong>${ongoingCourse.course.name}</strong> (${ongoingCourse.course.room}) · 剩 ${ongoingCourse.timeStat.remain} 分钟下课`;
         } else if (nextCourse) {
-          liveStatusText = `⏳ <strong>下一节课</strong>：${nextCourse.slot.start} ${nextCourse.course.name} · ${nextCourse.course.room}`;
+          liveStatusText = `<span style="color:var(--status-upcoming);font-weight:600;">○ 下一节课</span>：<strong>${nextCourse.slot.start} ${nextCourse.course.name}</strong> · ${nextCourse.course.room}`;
         } else {
-          liveStatusText = `🎉 今日所有课程已结束，享受课后时间吧！`;
+          liveStatusText = `今日课程已全部结束，享受安静的自主时间。`;
         }
       } else if (holiday) {
-        liveStatusText = `${holiday.desc}，祝假期愉快！🌴`;
+        liveStatusText = `${holiday.desc}，祝假期愉快。`;
       } else if (adjustment) {
-        liveStatusText = `${adjustment.desc}，请准时出勤！⏰`;
+        liveStatusText = `${adjustment.desc}，请按时出勤。`;
       } else {
         liveStatusText = activeDayCourses.length > 0 
-          ? `今日已排 <strong>${activeDayCourses.length}</strong> 节课，请提前到教室 📖` 
-          : `本日无上课安排，好好休息充个电吧 ☕`;
+          ? `今日共安排 <strong>${activeDayCourses.length}</strong> 门课程，请从容前往教室。` 
+          : `本日无上课安排，可在自习室阅读或休息充能。`;
       }
 
       summaryBox.innerHTML = `
         <div class="today-date-row">
           <div class="today-date">
-            ${isActualToday ? '🌟 今天 · ' : ''}${dateFormatted} ${currentDayName}
+            ${isActualToday ? '今天 · ' : ''}${dateFormatted} ${currentDayName}
           </div>
-          <div style="display:flex; align-items:center; gap:6px;">
-            ${!isActualToday ? `<button onclick="window.goToToday()" class="icon-btn" style="height:24px; font-size:11px; padding:0 8px; border-radius:12px; width:auto; background:rgba(255,255,255,0.25); color:white; border:none; cursor:pointer;">📍 回到今日</button>` : ''}
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${!isActualToday ? `<button onclick="window.goToToday()" class="icon-btn" style="height:28px; font-size:12px; padding:0 10px; border-radius:var(--radius-sm); width:auto; background:var(--bg-subtle); color:var(--text-primary); border:1px solid var(--border-color); cursor:pointer;">回到今天</button>` : ''}
             <span class="today-week-badge">第 ${state.selectedWeek} 周 ${isActualToday ? '(本周)' : ''}</span>
           </div>
         </div>
@@ -1370,10 +1445,10 @@ body {
 
       if (holiday) {
         container.innerHTML = `
-          <div class="empty-course-state" style="border-color: #fca5a5; background: rgba(239,68,68,0.04);">
+          <div class="empty-course-state" style="border-color: var(--accent-border); background: var(--accent-light);">
             <div class="empty-icon">${holiday.icon}</div>
-            <h3 style="font-size: 16px; color:#dc2626;">${holiday.name}放假中</h3>
-            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">${holiday.desc}</p>
+            <h3 style="font-size: 17px; font-weight:600; color:var(--accent);">${holiday.name}放假中</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">${holiday.desc}</p>
           </div>
         `;
         return;
@@ -1383,12 +1458,12 @@ body {
         const isWeek1 = (state.selectedWeek === 1);
         container.innerHTML = `
           <div class="empty-course-state">
-            <div class="empty-icon">🏖️</div>
-            <h3 style="font-size: 16px; margin-bottom: 4px;">本日无课程安排</h3>
-            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-              ${isWeek1 ? '课程将于 <strong>9月7日（第 2 周）</strong> 正式开始' : '可以前往图书馆自习或自学编程'}
+            <div class="empty-icon">☕</div>
+            <h3 style="font-size: 17px; font-weight:600; margin-bottom: 6px;">本日无课程安排</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+              ${isWeek1 ? '学期正式课程将于 9月7日（第 2 周）开始' : '享受阅读、自习或课余时光'}
             </p>
-            ${isWeek1 ? `<button onclick="window.goToWeek(2)" class="primary-btn" style="width:auto; padding:8px 16px; margin:0 auto; font-size:13px;">👉 切换查看 9月7日（第 2 周）课表</button>` : ''}
+            ${isWeek1 ? `<button onclick="window.goToWeek(2)" class="primary-btn" style="width:auto; padding:0 22px; margin:0 auto; font-size:13px;">查看第 2 周课表</button>` : ''}
           </div>
         `;
         return;
@@ -1397,34 +1472,34 @@ body {
       container.innerHTML = dayCourses.map(course => {
         const isActive = isCourseActiveInWeek(course, state.selectedWeek);
         const slot = getTimeSlot(course.section, targetDateStr, state.selectedDay);
-        const color = COURSE_COLORS[course.name] || { bg: 'rgba(99,102,241,0.1)', border: '#6366f1', text: '#4f46e5', solid: '#4f46e5' };
+        const color = COURSE_COLORS[course.name] || { bg: 'var(--bg-subtle)', border: 'var(--border-color)', text: 'var(--text-primary)', solid: 'var(--accent)' };
 
         let liveBadge = '';
         if (isActualToday && isActive && slot.start) {
           const timeStat = getClassTimeStatus(slot);
           if (timeStat.status === 'ongoing') {
-            liveBadge = `<span class="course-tag" style="background:#fee2e2; color:#dc2626; border:1px solid #f87171; font-weight:700;">🔴 正在上课</span>`;
+            liveBadge = `<span class="course-tag" style="background:var(--accent-light); color:var(--accent); border:1px solid var(--accent-border); font-weight:600;">正在上课</span>`;
           } else if (timeStat.status === 'upcoming') {
-            liveBadge = `<span class="course-tag" style="background:#fef3c7; color:#d97706; border:1px solid #fcd34d;">⏳ 待上课</span>`;
+            liveBadge = `<span class="course-tag" style="background:var(--bg-subtle); color:var(--status-upcoming); border:1px solid var(--border-color);">待上课</span>`;
           } else if (timeStat.status === 'finished') {
-            liveBadge = `<span class="course-tag" style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1;">✔️ 已结课</span>`;
+            liveBadge = `<span class="course-tag" style="background:var(--bg-subtle); color:var(--text-tertiary); border:1px solid var(--border-color);">已结课</span>`;
           }
         }
 
         return `
-          <div class="course-item-card ${isActive ? '' : 'is-inactive'}" onclick="window.showCourseDetail('${course.id}')" style="border-left: 4px solid ${color.solid};">
+          <div class="course-item-card ${isActive ? '' : 'is-inactive'}" onclick="window.showCourseDetail('${course.id}')" style="border-left: 3.5px solid ${isActive ? color.solid : 'var(--border-color)'};">
             <div class="course-item-left">
               <span class="time-slot-name">${course.periods}</span>
               <span class="time-slot-range">${slot.timeDesc}</span>
             </div>
             <div class="course-item-body">
               <div class="course-header-row">
-                <div class="course-title" style="color: ${isActive ? color.solid : 'inherit'}">
-                  ${adjustment ? `<span style="font-size:11px; color:#d97706;">[调休] </span>` : ''}${course.name}
+                <div class="course-title" style="color: var(--text-primary);">
+                  ${adjustment ? `<span style="font-size:12px; color:var(--accent);">[调休] </span>` : ''}${course.name}
                 </div>
-                <div style="display:flex; align-items:center; gap:4px;">
+                <div style="display:flex; align-items:center; gap:6px;">
                   ${liveBadge}
-                  <span class="course-tag" style="background: ${color.bg}; color: ${color.text}; border: 1px solid ${color.border}">
+                  <span class="course-tag" style="background: ${isActive ? color.bg : 'var(--bg-subtle)'}; color: ${isActive ? color.text : 'var(--text-tertiary)'}; border: 1px solid ${isActive ? color.border : 'var(--border-color)'};">
                     ${isActive ? '本周有课' : '非本周'}
                   </span>
                 </div>
@@ -1493,7 +1568,7 @@ body {
             <span style="font-weight:700;">${section * 2 - 1}-${section * 2}</span>
             <span class="grid-time-slot">${refSlot.start}</span>
             <span class="grid-time-slot">${refSlot.end}</span>
-            <span style="font-size:8px; color:var(--primary); opacity:0.8; margin-top:2px;">${isSummerWeek ? '夏季' : '冬季'}</span>
+            <span style="font-size:9px; color:var(--text-secondary); margin-top:2px;">${isSummerWeek ? '夏季' : '冬季'}</span>
           </div>
         `;
 
@@ -1507,7 +1582,7 @@ body {
 
           if (colHoliday) {
             gridHtml += `
-              <div style="font-size:10px; color:#ef4444; text-align:center; padding:10px 2px; opacity:0.6; height:100%; display:flex; align-items:center; justify-content:center;">
+              <div style="font-size:11px; color:var(--accent); text-align:center; padding:10px 2px; height:100%; display:flex; align-items:center; justify-content:center; font-weight:500;">
                 ${colHoliday.name}放假
               </div>
             `;
@@ -1528,15 +1603,15 @@ body {
               coursesToDisplay.forEach(c => {
                 const isActive = isCourseActiveInWeek(c, state.selectedWeek);
                 const cardSlot = getTimeSlot(c.section, colDateStr, targetDay);
-                const color = COURSE_COLORS[c.name] || { bg: 'rgba(99,102,241,0.1)', text: '#4f46e5', border: '#6366f1', solid: '#4f46e5' };
+                const color = COURSE_COLORS[c.name] || { bg: 'var(--bg-subtle)', border: 'var(--border-color)', text: 'var(--text-primary)', solid: 'var(--accent)' };
                 
                 gridHtml += `
                   <div class="grid-card ${isActive ? '' : 'inactive-week'}" 
                        onclick="window.showCourseDetail('${c.id}')"
                        style="background: ${color.bg}; border-color: ${color.border}; color: ${color.text};">
-                    <div class="grid-card-name">${colAdj ? '⏰ ' : ''}${c.name}</div>
+                    <div class="grid-card-name">${colAdj ? '[调] ' : ''}${c.name}</div>
                     <div class="grid-card-time">${cardSlot.start}-${cardSlot.end}</div>
-                    <div class="grid-card-room">📍${c.room}</div>
+                    <div class="grid-card-room">${c.room}</div>
                   </div>
                 `;
               });
@@ -1553,9 +1628,10 @@ body {
       const gridTitle = document.getElementById('week-grid-title');
       const backTodayBtn = document.getElementById('week-back-today-btn');
       if (gridTitle) {
-        gridTitle.innerText = `🗓️ 第 ${state.selectedWeek} 周课表 ${state.selectedWeek === state.currentWeek ? '(本周)' : ''}`;
+        gridTitle.innerText = `第 ${state.selectedWeek} 周课表 ${state.selectedWeek === state.currentWeek ? '(本周)' : ''}`;
       }
       if (backTodayBtn) {
+        backTodayBtn.innerText = '回到本周';
         backTodayBtn.style.display = (state.selectedWeek !== state.currentWeek) ? 'inline-flex' : 'none';
       }
     }

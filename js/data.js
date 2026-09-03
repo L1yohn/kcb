@@ -46,20 +46,20 @@
     { section: 5, periods: '9-10节', start: '19:00', end: '20:40', timeDesc: '19:00/19:20', part: 'evening' }
   ];
 
-  // 课程卡片颜色主题库
+  // 课程卡片颜色主题库 (低饱和莫兰迪大地/矿物色系)
   const COURSE_COLORS = {
-    '计算机组成原理': { bg: 'rgba(99, 102, 241, 0.12)', border: '#6366f1', text: '#4338ca', darkText: '#a5b4fc', solid: '#4f46e5' },
-    '操作系统': { bg: 'rgba(14, 165, 233, 0.12)', border: '#0ea5e9', text: '#0369a1', darkText: '#7dd3fc', solid: '#0284c7' },
-    'Java语言程序设计': { bg: 'rgba(245, 158, 11, 0.12)', border: '#f59e0b', text: '#b45309', darkText: '#fcd34d', solid: '#d97706' },
-    '软件建模原理': { bg: 'rgba(20, 184, 166, 0.12)', border: '#14b8a6', text: '#0f766e', darkText: '#5eead4', solid: '#0d9488' },
-    '软件项目管理': { bg: 'rgba(16, 185, 129, 0.12)', border: '#10b981', text: '#047857', darkText: '#6ee7b7', solid: '#059669' },
-    '软件质量保证与测试': { bg: 'rgba(34, 197, 94, 0.12)', border: '#22c55e', text: '#15803d', darkText: '#86efac', solid: '#16a34a' },
-    '马克思主义基本原理': { bg: 'rgba(239, 68, 68, 0.12)', border: '#ef4444', text: '#b91c1c', darkText: '#fca5a5', solid: '#dc2626' },
-    'Python数据挖掘与可视化': { bg: 'rgba(59, 130, 246, 0.12)', border: '#3b82f6', text: '#1d4ed8', darkText: '#93c5fd', solid: '#2563eb' },
-    '软件工程专业英语': { bg: 'rgba(168, 85, 247, 0.12)', border: '#a855f7', text: '#7e22ce', darkText: '#d8b4fe', solid: '#9333ea' },
-    'Hadoop大数据基础应用': { bg: 'rgba(139, 92, 246, 0.12)', border: '#8b5cf6', text: '#6d28d9', darkText: '#c4b5fd', solid: '#7c3aed' },
-    '大学生心理健康教育（心理危机）': { bg: 'rgba(236, 72, 153, 0.12)', border: '#ec4899', text: '#be185d', darkText: '#f472b6', solid: '#db2777' },
-    '形势与政策Ⅴ': { bg: 'rgba(249, 115, 22, 0.12)', border: '#f97316', text: '#c2410c', darkText: '#fdba74', solid: '#ea580c' }
+    '计算机组成原理': { bg: '#EFF2F5', border: '#D4DCE2', text: '#3A5063', solid: '#4F6B85' },
+    '操作系统': { bg: '#F1F4EE', border: '#D6DDD0', text: '#43583E', solid: '#587452' },
+    'Java语言程序设计': { bg: '#F8F4EA', border: '#E7DECA', text: '#775F2A', solid: '#9B7E38' },
+    '软件建模原理': { bg: '#EEF4F3', border: '#D0DFDC', text: '#365752', solid: '#4A726C' },
+    '软件项目管理': { bg: '#FAF1EC', border: '#E9D6CB', text: '#824322', solid: '#C96A3D' },
+    '软件质量保证与测试': { bg: '#EFF3EC', border: '#D4DDD0', text: '#3F573B', solid: '#55724F' },
+    '马克思主义基本原理': { bg: '#F9ECE9', border: '#E8CECA', text: '#87362B', solid: '#B34A3C' },
+    'Python数据挖掘与可视化': { bg: '#EEF2F6', border: '#D3DCE5', text: '#344D66', solid: '#4B6A8A' },
+    '软件工程专业英语': { bg: '#F3EFF5', border: '#DDD5E1', text: '#5A4866', solid: '#7A648A' },
+    'Hadoop大数据基础应用': { bg: '#F3EFF7', border: '#DDD5E5', text: '#58446B', solid: '#745D8C' },
+    '大学生心理健康教育（心理危机）': { bg: '#F7EFF2', border: '#E7D5DC', text: '#784355', solid: '#9E5B72' },
+    '形势与政策Ⅴ': { bg: '#F9F1EB', border: '#EBDCCE', text: '#7F4E2B', solid: '#A8683B' }
   };
 
   /**
