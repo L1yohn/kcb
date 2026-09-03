@@ -73,19 +73,32 @@
 html, body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-x;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-main);
   color: var(--text-primary);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.5;
   letter-spacing: -0.012em;
   transition: background-color 0.2s ease-out, color 0.2s ease-out;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
@@ -96,12 +109,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .app-container {
   width: 100%;
   max-width: var(--content-max-width);
-  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
-  padding-bottom: calc(var(--tab-bar-height) + 24px);
+  padding: 0 10px;
+  padding-bottom: var(--tab-bar-height);
   position: relative;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -115,13 +130,11 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
    顶部导航栏 (Header)
    ========================================== */
 .app-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  flex-shrink: 0;
   background: var(--bg-main);
   border-bottom: 1px solid var(--border-color);
-  padding: 16px 0 12px;
-  margin-bottom: 24px;
+  padding: 10px 0 6px;
+  margin-bottom: 8px;
   transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
@@ -129,7 +142,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .brand-info {
@@ -318,15 +331,26 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 /* ==========================================
-   视图 1: 今日日程 (Today View) - 紧凑不滚动布局
+   视图 1: 今日日程 (Today View)
+   全屏固定无上下滑动，卡片适中舒展清晰
    ========================================== */
+#view-today.active {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 .today-summary-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   position: relative;
+  flex-shrink: 0;
   transition: all 0.2s ease-out;
 }
 
@@ -339,14 +363,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 .today-date {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 
 .today-week-badge {
-  font-size: 11px;
+  font-size: 11.5px;
   padding: 2px 8px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
@@ -356,9 +380,9 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 .today-status-text {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .today-status-text strong {
@@ -371,7 +395,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 .weekday-btn {
@@ -380,12 +405,12 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   border-radius: var(--radius-xs);
   padding: 5px 1px;
   text-align: center;
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.18s ease-out;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .weekday-btn:hover {
@@ -411,24 +436,29 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   color: var(--accent);
 }
 
-/* 今日课程列表 - 紧凑高度，单屏尽览 */
+/* 今日课程列表：严格固定无上下滑动 */
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
+/* 课程卡片：适中大气尺寸，字体清晰，间距舒展 */
 .course-item-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   cursor: pointer;
   transition: all 0.18s ease-out;
   position: relative;
-  min-height: 52px;
+  min-height: 72px;
+  flex-shrink: 0;
 }
 
 .course-item-card:hover {
@@ -450,25 +480,25 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-width: 68px;
+  min-width: 76px;
   border-right: 1px solid var(--border-color);
-  padding-right: 8px;
+  padding-right: 10px;
   flex-shrink: 0;
 }
 
 .time-slot-name {
-  font-size: 10.5px;
+  font-size: 11.5px;
   color: var(--text-tertiary);
   font-weight: 500;
   line-height: 1.2;
 }
 
 .time-slot-range {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
-  margin-top: 1px;
+  margin-top: 2px;
   line-height: 1.2;
 }
 
@@ -485,23 +515,23 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   justify-content: space-between;
   align-items: center;
   gap: 6px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 
 .course-title {
-  font-size: 14px;
+  font-size: 15.5px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .course-tag {
-  font-size: 10px;
-  padding: 1px 6px;
+  font-size: 11px;
+  padding: 2px 7px;
   border-radius: var(--radius-full);
   font-weight: 500;
   white-space: nowrap;
@@ -511,14 +541,13 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .course-meta-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 11.5px;
+  gap: 14px;
+  font-size: 12.5px;
   color: var(--text-secondary);
-  flex-wrap: nowrap;
+  line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.2;
 }
 
 .meta-item {
@@ -532,45 +561,43 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   background: var(--bg-surface);
   border: 1px dashed var(--border-color);
   border-radius: var(--radius-sm);
-  padding: 24px 16px;
+  padding: 28px 16px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .empty-icon {
-  font-size: 28px;
-  margin-bottom: 6px;
+  font-size: 30px;
+  margin-bottom: 8px;
 }
 
 /* ==========================================
    视图 2: 周课表全景 (Weekly Grid View)
-   上下撑满全屏、杜绝留空，单屏无滚动显示
+   上下撑满全屏、杜绝留空、全屏固定无上下滑动
    ========================================== */
 #view-week.active {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: calc(100dvh - var(--tab-bar-height) - 100px);
-}
-
-@supports not (height: 100dvh) {
-  #view-week.active {
-    min-height: calc(100vh - var(--tab-bar-height) - 100px);
-  }
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .grid-controls-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   flex-wrap: wrap;
   gap: 8px;
   flex-shrink: 0;
+  height: 30px;
 }
 
 .grid-filter-btn {
   font-size: 11.5px;
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: var(--radius-sm);
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
@@ -594,43 +621,46 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   font-weight: 600;
 }
 
-/* 填满整个剩余高度的包裹器 */
+/* 填满整个剩余高度的包裹器，禁止任何溢出 */
 .timetable-scroll-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  min-height: 0;
   border-radius: var(--radius-sm);
   background: var(--border-color);
   border: 1px solid var(--border-color);
   overflow: hidden;
-  min-height: 0;
 }
 
-/* 核心网格：各节次比例填满整屏 (auto 顶部日期 + 5行等分 1fr) */
+/* 核心网格：各节次比例填满整屏 (28px 顶部日期 + 5行等分 1fr) */
 .timetable-grid {
   display: grid;
-  grid-template-columns: 32px repeat(5, minmax(0, 1fr));
+  grid-template-columns: 34px repeat(5, minmax(0, 1fr));
   grid-template-rows: 28px repeat(5, 1fr);
   width: 100%;
-  flex: 1;
   height: 100%;
+  flex: 1;
   min-height: 0;
   gap: 1px;
+  overflow: hidden;
 }
 
 .show-weekends .timetable-grid {
-  grid-template-columns: 26px repeat(7, minmax(0, 1fr));
+  grid-template-columns: 28px repeat(7, minmax(0, 1fr));
   grid-template-rows: 28px repeat(5, 1fr);
   width: 100%;
-  flex: 1;
   height: 100%;
+  flex: 1;
   min-height: 0;
+  overflow: hidden;
 }
 
 .grid-header-cell {
   background: var(--bg-subtle);
-  padding: 3px 1px;
+  padding: 2px 1px;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -640,6 +670,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .grid-header-cell.is-today {
@@ -649,7 +680,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
 .grid-time-cell {
   background: var(--bg-subtle);
-  padding: 3px 1px;
+  padding: 2px 1px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -677,6 +708,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  overflow: hidden;
 }
 
 .grid-card {
@@ -691,6 +723,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   transition: all 0.18s ease-out;
   border: 1px solid transparent;
   min-height: 0;
+  overflow: hidden;
 }
 
 .grid-card:hover {
