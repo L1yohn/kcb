@@ -1570,16 +1570,32 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         return;
       }
 
-      if (dayCourses.length === 0 || activeDayCourses.length === 0) {
-        const isWeek1 = (state.selectedWeek === 1);
+      if (dayCourses.length === 0) {
         container.innerHTML = `
           <div class="empty-course-state">
             <div class="empty-icon">☕</div>
-            <h3 style="font-size: 17px; font-weight:600; margin-bottom: 6px;">本日无课程安排</h3>
-            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-              ${isWeek1 ? '学期正式课程将于 9月7日（第 2 周）开始' : '享受阅读、自习或课余时光'}
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">本日全天无课程安排</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary);">享受阅读、自习或课余时光</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (activeDayCourses.length === 0 && !state.showTodayInactive) {
+        const isWeek1 = (state.selectedWeek === 1);
+        container.innerHTML = `
+          <div class="empty-course-state" style="padding: 22px 16px;">
+            <div class="empty-icon">☕</div>
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">本日无须上课</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 12px;">
+              ${isWeek1 ? '学期正式课程将于 9月7日（第 2 周）开始' : `本学期此日有 ${dayCourses.length} 门其他周次课程`}
             </p>
-            ${isWeek1 ? `<button onclick="window.goToWeek(2)" class="primary-btn" style="width:auto; padding:0 22px; margin:0 auto; font-size:13px;">查看第 2 周课表</button>` : ''}
+            <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+              ${isWeek1 ? `<button onclick="window.goToWeek(2)" class="primary-btn" style="width: auto; padding: 0 18px; margin: 0; font-size: 12px; height: 34px;">查看第 2 周课表</button>` : ''}
+              <button onclick="window.toggleTodayInactive()" class="grid-filter-btn" style="font-size: 12px; padding: 5px 14px;">
+                查看非本周课程 (${dayCourses.length}门)
+              </button>
+            </div>
           </div>
         `;
         return;
@@ -1757,6 +1773,11 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         backTodayBtn.style.display = (state.selectedWeek !== state.currentWeek) ? 'inline-flex' : 'none';
       }
     }
+
+    window.toggleTodayInactive = function() {
+      state.showTodayInactive = !state.showTodayInactive;
+      renderTodayView();
+    };
 
     window.showCourseDetail = function(courseId) {
       const course = RAW_COURSES.find(c => c.id === courseId);
