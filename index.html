@@ -331,14 +331,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 /* ==========================================
-   视图 1: 今日日程 (Today View)
+   视图 1: 今日日程 (Today View) - 紧凑不滚动布局
    ========================================== */
 .today-summary-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  margin-bottom: 24px;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 10px;
   position: relative;
   transition: all 0.2s ease-out;
 }
@@ -346,22 +346,21 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .today-date-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 8px;
 }
 
 .today-date {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 
 .today-week-badge {
-  font-size: 12px;
-  padding: 4px 10px;
+  font-size: 11px;
+  padding: 2px 8px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-full);
@@ -370,9 +369,9 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 .today-status-text {
-  font-size: 14.5px;
+  font-size: 12.5px;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .today-status-text strong {
@@ -384,21 +383,22 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .weekday-switcher {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin-bottom: 24px;
+  gap: 4px;
+  margin-bottom: 10px;
 }
 
 .weekday-btn {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 8px 2px;
+  border-radius: var(--radius-xs);
+  padding: 5px 1px;
   text-align: center;
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.18s ease-out;
+  line-height: 1.2;
 }
 
 .weekday-btn:hover {
@@ -424,23 +424,24 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   color: var(--accent);
 }
 
-/* 今日课程时间轴列表 */
+/* 今日课程列表 - 紧凑高度，单屏尽览 */
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .course-item-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
   display: flex;
-  gap: 18px;
+  gap: 12px;
   cursor: pointer;
   transition: all 0.18s ease-out;
   position: relative;
+  min-height: 52px;
 }
 
 .course-item-card:hover {
@@ -453,7 +454,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 }
 
 .course-item-card.is-inactive {
-  opacity: 0.45;
+  opacity: 0.55;
   background: var(--bg-subtle);
 }
 
@@ -462,23 +463,26 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-width: 82px;
+  min-width: 68px;
   border-right: 1px solid var(--border-color);
-  padding-right: 14px;
+  padding-right: 8px;
+  flex-shrink: 0;
 }
 
 .time-slot-name {
-  font-size: 12px;
+  font-size: 10.5px;
   color: var(--text-tertiary);
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .time-slot-range {
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
-  margin-top: 2px;
+  margin-top: 1px;
+  line-height: 1.2;
 }
 
 .course-item-body {
@@ -493,73 +497,93 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+  gap: 6px;
+  margin-bottom: 3px;
 }
 
 .course-title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.25;
 }
 
 .course-tag {
-  font-size: 11px;
-  padding: 2px 8px;
+  font-size: 10px;
+  padding: 1px 6px;
   border-radius: var(--radius-full);
   font-weight: 500;
   white-space: nowrap;
+  line-height: 1.3;
 }
 
 .course-meta-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  font-size: 13px;
+  gap: 12px;
+  font-size: 11.5px;
   color: var(--text-secondary);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .meta-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 /* 空状态卡片 */
 .empty-course-state {
   background: var(--bg-surface);
   border: 1px dashed var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 48px 24px;
+  border-radius: var(--radius-sm);
+  padding: 24px 16px;
   text-align: center;
 }
 
 .empty-icon {
-  font-size: 36px;
-  margin-bottom: 12px;
+  font-size: 28px;
+  margin-bottom: 6px;
 }
 
 /* ==========================================
    视图 2: 周课表全景 (Weekly Grid View)
-   自适应单屏完整显示，无需左右滑动
+   上下撑满全屏、杜绝留空，单屏无滚动显示
    ========================================== */
+#view-week.active {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: calc(100dvh - var(--tab-bar-height) - 100px);
+}
+
+@supports not (height: 100dvh) {
+  #view-week.active {
+    min-height: calc(100vh - var(--tab-bar-height) - 100px);
+  }
+}
+
 .grid-controls-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   flex-wrap: wrap;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .grid-filter-btn {
-  font-size: 12px;
-  padding: 5px 12px;
+  font-size: 11.5px;
+  padding: 4px 10px;
   border-radius: var(--radius-sm);
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
@@ -583,35 +607,52 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   font-weight: 600;
 }
 
+/* 填满整个剩余高度的包裹器 */
 .timetable-scroll-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background: var(--border-color);
   border: 1px solid var(--border-color);
   overflow: hidden;
+  min-height: 0;
 }
 
-/* 核心布局：100% 满屏自适应分配，杜绝任何溢出与左右横向拖动 */
+/* 核心网格：各节次比例填满整屏 (auto 顶部日期 + 5行等分 1fr) */
 .timetable-grid {
   display: grid;
   grid-template-columns: 32px repeat(5, minmax(0, 1fr));
+  grid-template-rows: 28px repeat(5, 1fr);
   width: 100%;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
   gap: 1px;
 }
 
 .show-weekends .timetable-grid {
   grid-template-columns: 26px repeat(7, minmax(0, 1fr));
+  grid-template-rows: 28px repeat(5, 1fr);
   width: 100%;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
 
 .grid-header-cell {
   background: var(--bg-subtle);
-  padding: 7px 1px;
+  padding: 3px 1px;
   text-align: center;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-primary);
-  line-height: 1.25;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .grid-header-cell.is-today {
@@ -621,7 +662,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
 .grid-time-cell {
   background: var(--bg-subtle);
-  padding: 4px 1px;
+  padding: 3px 1px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -630,6 +671,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   font-size: 10px;
   color: var(--text-secondary);
   line-height: 1.15;
+  height: 100%;
 }
 
 .grid-time-slot {
@@ -642,7 +684,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
 .grid-course-slot {
   background: var(--bg-surface);
-  min-height: 64px;
+  height: 100%;
+  min-height: 0;
   padding: 2px;
   display: flex;
   flex-direction: column;
@@ -651,15 +694,16 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
 .grid-card {
   flex: 1;
+  height: 100%;
   border-radius: var(--radius-xs);
-  padding: 3px 2.5px;
+  padding: 4px 3px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
   transition: all 0.18s ease-out;
   border: 1px solid transparent;
-  min-height: 58px;
+  min-height: 0;
 }
 
 .grid-card:hover {
@@ -673,7 +717,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .grid-card-name {
   font-size: 10.5px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -707,48 +751,42 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   border: 1px dashed var(--border-color);
 }
 
-/* 移动端视口优化 (<= 640px) 确保单屏无滚动 */
+/* 移动端视口优化 (<= 640px) */
 @media (max-width: 640px) {
   .app-container {
     padding: 0 6px;
-    padding-bottom: calc(var(--tab-bar-height) + 12px);
+    padding-bottom: calc(var(--tab-bar-height) + 8px);
   }
   .app-header {
-    padding: 12px 0 8px;
-    margin-bottom: 12px;
-  }
-  .grid-controls-bar {
+    padding: 10px 0 6px;
     margin-bottom: 8px;
-  }
-  .timetable-scroll-wrapper {
-    border-radius: var(--radius-sm);
   }
 }
 
-/* 桌面/平板屏幕 (>= 768px) 宽屏呼吸展开 */
+/* 桌面/平板屏幕 (>= 768px) */
 @media (min-width: 768px) {
+  #view-week.active {
+    min-height: 640px;
+  }
   .timetable-grid {
     grid-template-columns: 56px repeat(5, minmax(0, 1fr));
+    grid-template-rows: 36px repeat(5, 1fr);
   }
   .show-weekends .timetable-grid {
     grid-template-columns: 48px repeat(7, minmax(0, 1fr));
+    grid-template-rows: 36px repeat(5, 1fr);
   }
   .grid-header-cell {
-    padding: 12px 6px;
-    font-size: 13px;
+    padding: 8px 4px;
+    font-size: 12.5px;
   }
   .grid-time-cell {
-    padding: 8px 3px;
+    padding: 6px 3px;
     font-size: 11px;
-  }
-  .grid-course-slot {
-    min-height: 92px;
-    padding: 4px;
   }
   .grid-card {
     padding: 6px 7px;
     border-radius: var(--radius-sm);
-    min-height: 82px;
   }
   .grid-card-name {
     font-size: 12px;
@@ -1223,6 +1261,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       todayDay: 1,
       selectedDay: 1,
       filterOnlyActiveGrid: true,
+      showTodayInactive: false,
       showWeekends: false,
       theme: getStorage('kcb_theme', 'auto'),
       timeSlots: DEFAULT_TIME_SLOTS
@@ -1525,7 +1564,10 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         return;
       }
 
-      container.innerHTML = dayCourses.map(course => {
+      const inactiveCourses = dayCourses.filter(c => !isCourseActiveInWeek(c, state.selectedWeek));
+      const coursesToShow = state.showTodayInactive ? dayCourses : activeDayCourses;
+
+      let listHtml = coursesToShow.map(course => {
         const isActive = isCourseActiveInWeek(course, state.selectedWeek);
         const slot = getTimeSlot(course.section, targetDateStr, state.selectedDay);
         const color = COURSE_COLORS[course.name] || { bg: 'var(--bg-subtle)', border: 'var(--border-color)', text: 'var(--text-primary)', solid: 'var(--accent)' };
@@ -1546,14 +1588,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
           <div class="course-item-card ${isActive ? '' : 'is-inactive'}" onclick="window.showCourseDetail('${course.id}')" style="border-left: 3.5px solid ${isActive ? color.solid : 'var(--border-color)'};">
             <div class="course-item-left">
               <span class="time-slot-name">${course.periods}</span>
-              <span class="time-slot-range">${slot.timeDesc}</span>
+              <span class="time-slot-range">${slot.start}-${slot.end}</span>
             </div>
             <div class="course-item-body">
               <div class="course-header-row">
                 <div class="course-title" style="color: var(--text-primary);">
-                  ${adjustment ? `<span style="font-size:12px; color:var(--accent);">[调休] </span>` : ''}${course.name}
+                  ${adjustment ? `<span style="font-size:11px; color:var(--accent);">[调] </span>` : ''}${course.name}
                 </div>
-                <div style="display:flex; align-items:center; gap:6px;">
+                <div style="display:flex; align-items:center; gap:4px;">
                   ${liveBadge}
                   <span class="course-tag" style="background: ${isActive ? color.bg : 'var(--bg-subtle)'}; color: ${isActive ? color.text : 'var(--text-tertiary)'}; border: 1px solid ${isActive ? color.border : 'var(--border-color)'};">
                     ${isActive ? '本周有课' : '非本周'}
@@ -1561,23 +1603,26 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
                 </div>
               </div>
               <div class="course-meta-row">
-                <div class="meta-item">
-                  <span class="meta-icon">📍</span>
-                  <strong>${course.room}</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-icon">👨‍🏫</span>
-                  <span>${course.teacher}</span>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-icon">📅</span>
-                  <span>${course.weeksRaw}</span>
-                </div>
+                <span class="meta-item">📍<strong>${course.room}</strong></span>
+                <span class="meta-item">👨‍🏫${course.teacher}</span>
+                <span class="meta-item">📅${course.weeksRaw}</span>
               </div>
             </div>
           </div>
         `;
       }).join('');
+
+      if (inactiveCourses.length > 0) {
+        listHtml += `
+          <div style="text-align: center; padding: 6px 0 2px;">
+            <button onclick="window.toggleTodayInactive()" class="grid-filter-btn" style="margin: 0 auto; font-size: 11px;">
+              ${state.showTodayInactive ? '收起非本周课程' : `查看非本周课程 (${inactiveCourses.length}门)`}
+            </button>
+          </div>
+        `;
+      }
+
+      container.innerHTML = listHtml;
     }
 
     function renderWeekGrid() {
