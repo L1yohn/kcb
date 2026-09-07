@@ -2249,14 +2249,7 @@
     "shown": 17
   },
   "synced_at": "2026-09-07 16:40:38",
-  "last_sync": {
-    "term": "2026-2027-1",
-    "ok": true,
-    "count": 17,
-    "message": "同步成功",
-    "at": "2026-09-07 16:40:38"
-  },
-  "generated_at": "2026-09-07 17:31:43",
+  "generated_at": "2026-09-07 17:46:33",
   "_fetched_by": "github-actions",
-  "_baked_at": "2026-09-07T09:31:40.566Z"
+  "_baked_at": "2026-09-07T09:46:31.356Z"
 }

@@ -1409,7 +1409,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
     let CURRENT_COURSES = [...RAW_COURSES];
 
-    const DEFAULT_API_BASE = 'http://111.230.92.136:8000';
+    const DEFAULT_API_BASE = '';
 
     function getApiBase() {
       const custom = getStorage('kcb_api_base', '');
@@ -1417,7 +1417,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
         return '';
       }
-      return DEFAULT_API_BASE;
+      return '';
     }
 
     function showToast(msg, duration = 3000) {
@@ -1636,16 +1636,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       if (customBase) {
         candidateUrls.push(customBase.replace(/\/+$/, '') + '/api/schedule');
       } else if (window.location.protocol === 'file:') {
-        // file:// 模式：优先尝试本地 start.bat 代理，其次尝试同目录 schedule.json，最后尝试远端
+        // file:// 模式：优先尝试本地 start.bat 代理，其次尝试同目录 schedule.json
         candidateUrls.push('http://localhost:8080/api/schedule');
         candidateUrls.push('schedule.json');
-        candidateUrls.push(DEFAULT_API_BASE + '/api/schedule');
       } else {
         // 网页模式（如 GitHub Pages、Vercel 等）：
         // 优先读取同源 schedule.json（GitHub Actions 定时同步生成），其次尝试 /api 代理
         candidateUrls.push('schedule.json');
         candidateUrls.push('/api/schedule');
-        candidateUrls.push(DEFAULT_API_BASE + '/api/schedule');
       }
 
       let lastError = null;

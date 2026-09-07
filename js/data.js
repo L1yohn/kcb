@@ -440,7 +440,7 @@
     return null;
   }
 
-  const DEFAULT_API_BASE = 'http://111.230.92.136:8000';
+  const DEFAULT_API_BASE = '';
 
   function adaptApiCourse(c) {
     const startSec = c.start_section || (c.sections && c.sections[0]) || 1;
