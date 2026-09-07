@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
   <title>我的课程表 - 手机移动端查询系统</title>
   <meta name="description" content="专为手机端优化的大学课程表查询系统，支持周次切换、实时日程、周视图网格与日历导出。">
-  <meta name="theme-color" content="#4f46e5">
+  <meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181715" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F7F6F2" id="meta-theme-color">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
   <style>
@@ -83,7 +85,8 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
+  background-color: var(--bg-main);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -107,7 +110,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   touch-action: manipulation;
 }
 
-/* App Container - 单屏适中无内滚，保留浏览器原生下拉刷新 */
+/* App Container - 完美适配全面屏 Safe Area */
 .app-container {
   width: 100%;
   max-width: var(--content-max-width);
@@ -116,7 +119,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   display: flex;
   flex-direction: column;
   padding: 0 10px;
-  padding-bottom: calc(var(--tab-bar-height) + 12px);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: calc(var(--tab-bar-height) + 12px + env(safe-area-inset-bottom, 0px));
   position: relative;
 }
 
@@ -830,7 +834,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--tab-bar-height);
+  height: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--bg-surface);
   border-top: 1px solid var(--border-color);
   display: flex;
@@ -1688,6 +1693,12 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       state.selectedDay = state.todayDay;
     }
 
+    function updateThemeMeta(isDark) {
+      const color = isDark ? '#181715' : '#F7F6F2';
+      const meta = document.getElementById('meta-theme-color');
+      if (meta) meta.setAttribute('content', color);
+    }
+
     function initTheme() {
       const savedTheme = state.theme;
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1697,6 +1708,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       } else {
         document.documentElement.removeAttribute('data-theme');
       }
+      updateThemeMeta(isDark);
     }
 
     function bindEvents() {
@@ -1752,10 +1764,12 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
             document.documentElement.removeAttribute('data-theme');
             state.theme = 'light';
             setStorage('kcb_theme', 'light');
+            updateThemeMeta(false);
           } else {
             document.documentElement.setAttribute('data-theme', 'dark');
             state.theme = 'dark';
             setStorage('kcb_theme', 'dark');
+            updateThemeMeta(true);
           }
         });
       }
