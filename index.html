@@ -1111,40 +1111,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .settings-input:focus {
   border-color: var(--accent);
 }
-.extras-section {
-  margin-top: 14px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 14px;
-}
-.extras-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.extras-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-.extras-table th {
-  text-align: left;
-  padding: 6px 8px;
-  background: var(--bg-subtle);
-  color: var(--text-secondary);
-  font-weight: 500;
-  border-bottom: 1px solid var(--border-color);
-}
-.extras-table td {
-  padding: 8px;
-  border-bottom: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-}
 </style>
 </head>
 <body>
@@ -1217,9 +1183,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       <div id="timetable-scroll-wrapper" class="timetable-scroll-wrapper">
         <div id="timetable-grid-content" class="timetable-grid"></div>
       </div>
-
-      <!-- 实践课与综合实训课程（来自教务 API） -->
-      <div id="week-extras-container"></div>
     </main>
 
     <!-- 底部 Tab 导航栏 -->
@@ -1287,8 +1250,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
             <div class="detail-val" id="settings-status-mode">在线同步 (离线可用)</div>
           </div>
         </div>
-
-        <div id="settings-extras-list" style="margin-top: 10px;"></div>
 
         <div style="display: flex; gap: 8px; margin-top: 18px;">
           <button class="primary-btn" id="modal-sync-btn" style="flex: 2; margin-top: 0;">
@@ -1517,11 +1478,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         CURRENT_COURSES = data.courses.map(adaptApiCourse);
       }
 
-      if (Array.isArray(data.extras)) {
-        state.extras = data.extras;
-        renderExtras();
-      }
-
       if (data.student) {
         state.student = data.student;
       }
@@ -1533,68 +1489,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       updateSettingsModalValues();
       refreshRealTimeState();
       renderAll();
-    }
-
-    // 渲染实践课/附加课程
-    function renderExtras() {
-      const container = document.getElementById('week-extras-container');
-      const settingsList = document.getElementById('settings-extras-list');
-      if (!state.extras || state.extras.length === 0) {
-        if (container) container.innerHTML = '';
-        if (settingsList) settingsList.innerHTML = '';
-        return;
-      }
-
-      const practiceGroup = state.extras.find(e => e.rows && e.rows.length > 0);
-      if (!practiceGroup) {
-        if (container) container.innerHTML = '';
-        if (settingsList) settingsList.innerHTML = '';
-        return;
-      }
-
-      const rowsHtml = practiceGroup.rows.map(r => `
-        <tr>
-          <td style="font-weight: 600;">${r['课程名称'] || '-'}</td>
-          <td>${r['教师'] || '-'}</td>
-          <td>${r['学分'] ? r['学分'] + '学分' : '-'}</td>
-          <td>${r['起止周'] ? '第' + r['起止周'] + '周' : '-'}</td>
-          <td>${r['上课地点'] || r['上课时间'] || '无固定节次'}</td>
-        </tr>
-      `).join('');
-
-      const extrasBoxHtml = `
-        <div class="extras-section">
-          <div class="extras-title">📋 ${practiceGroup.title || '实践课/实训综合课程'}</div>
-          <div style="overflow-x: auto;">
-            <table class="extras-table">
-              <thead>
-                <tr>
-                  <th>课程名称</th>
-                  <th>任课教师</th>
-                  <th>学分</th>
-                  <th>周次</th>
-                  <th>地点/时间</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${rowsHtml}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      `;
-
-      if (container) container.innerHTML = extrasBoxHtml;
-      if (settingsList) {
-        settingsList.innerHTML = `
-          <div class="detail-label" style="margin-top:10px; margin-bottom:6px;">📋 实践课 / 综合课程设计</div>
-          ${practiceGroup.rows.map(r => `
-            <div style="font-size:12px; padding:6px 10px; background:var(--bg-subtle); border-radius:var(--radius-xs); margin-bottom:4px;">
-              <strong>${r['课程名称']}</strong> · ${r['教师'] || '教师未定'} (${r['学分']}学分，${r['起止周'] || ''})
-            </div>
-          `).join('')}
-        `;
-      }
     }
 
     // 更新设置模态框中的显示信息
@@ -1783,7 +1677,6 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       term: '2026-2027-1',
       student: null,
       syncedAt: '',
-      extras: [],
       syncStatus: 'offline',
       syncStatusText: '本地模式'
     };
