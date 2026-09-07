@@ -25,6 +25,11 @@ const req = http.get(API_URL, (res) => {
       parsedData._fetched_by = 'github-actions';
       parsedData._baked_at = new Date().toISOString();
 
+      // 隐私脱敏：彻底抹除学号与姓名等敏感个人信息
+      if (parsedData.student) {
+        parsedData.student = { xh: '', xm: '' };
+      }
+
       fs.writeFileSync(OUTPUT_FILE, JSON.stringify(parsedData, null, 2), 'utf8');
       console.log('[Sync] ✅ 课表数据同步成功！共 ' + (parsedData.courses ? parsedData.courses.length : 0) + ' 门课程');
       console.log('[Sync] 已写入静态数据文件: ' + OUTPUT_FILE);

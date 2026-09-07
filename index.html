@@ -1247,28 +1247,28 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
     </div>
   </div>
 
-  <!-- 课表设置与 API 弹窗 Modal -->
+  <!-- 课表设置与信息弹窗 Modal -->
   <div id="settings-modal" class="modal-overlay">
     <div class="modal-sheet">
       <div class="sheet-handle"></div>
       <div class="modal-header">
-        <div class="modal-title">⚙️ 课表与 API 设置</div>
+        <div class="modal-title">⚙️ 课表与偏好设置</div>
         <button class="modal-close-btn" aria-label="关闭">&times;</button>
       </div>
       <div id="settings-modal-content">
-        <div class="settings-group">
-          <label class="settings-label">教务 API 服务器地址</label>
-          <input type="text" id="api-url-input" class="settings-input" placeholder="http://111.230.92.136:8000" />
-          <div style="font-size: 11px; color: var(--text-tertiary); margin-top: 5px;">
-            留空将自动优先使用当前同源代理 <code>/api</code>，直连默认 <code>http://111.230.92.136:8000</code>
+        <div class="detail-item-card">
+          <div class="detail-icon">📚</div>
+          <div>
+            <div class="detail-label">当前学期</div>
+            <div class="detail-val" id="settings-term-display">2026-2027 学年第 1 学期</div>
           </div>
         </div>
 
         <div class="detail-item-card">
-          <div class="detail-icon">👤</div>
+          <div class="detail-icon">📅</div>
           <div>
-            <div class="detail-label">学号与学生姓名</div>
-            <div class="detail-val" id="settings-student-info">202417190053 · 巫家浩</div>
+            <div class="detail-label">学期第 1 周周一 (开学起始日)</div>
+            <div class="detail-val" id="settings-term-start">2026-08-31</div>
           </div>
         </div>
 
@@ -1276,15 +1276,15 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
           <div class="detail-icon">⏱️</div>
           <div>
             <div class="detail-label">最近数据同步时间</div>
-            <div class="detail-val" id="settings-sync-time">暂未同步</div>
+            <div class="detail-val" id="settings-sync-time">已同步至最新</div>
           </div>
         </div>
 
         <div class="detail-item-card">
-          <div class="detail-icon">📅</div>
+          <div class="detail-icon">🟢</div>
           <div>
-            <div class="detail-label">学期第一周周一 (term_start)</div>
-            <div class="detail-val" id="settings-term-start">2026-08-31</div>
+            <div class="detail-label">数据运行状态</div>
+            <div class="detail-val" id="settings-status-mode">在线同步 (离线可用)</div>
           </div>
         </div>
 
@@ -1292,20 +1292,15 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
         <div style="display: flex; gap: 8px; margin-top: 18px;">
           <button class="primary-btn" id="modal-sync-btn" style="flex: 2; margin-top: 0;">
-            🔄 立即从教务同步
+            🔄 立即刷新同步数据
           </button>
-          <button class="primary-btn" id="modal-save-btn" style="flex: 1; margin-top: 0; background: var(--bg-subtle); color: var(--text-primary); border: 1px solid var(--border-color);">
-            保存地址
+          <button class="primary-btn" id="modal-clear-cache-btn" style="flex: 1; margin-top: 0; background: var(--bg-subtle); color: var(--text-primary); border: 1px solid var(--border-color);">
+            重置缓存
           </button>
         </div>
 
-        <div style="font-size: 11.5px; line-height: 1.5; color: var(--text-secondary); background: var(--bg-subtle); padding: 10px 12px; border-radius: var(--radius-sm); margin-top: 14px; border: 1px dashed var(--border-color);">
-          💡 <strong>跨域提示</strong>：直接双击打开本地网页（<code>file://</code> 协议）受浏览器跨域安全限制（CORS）。<strong>双击运行目录下的 <code>start.bat</code></strong>，通过本地服务访问即可 100% 成功同步最新教务数据！
-        </div>
-
-        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 12px;">
-          <a id="link-docs" href="http://111.230.92.136:8000/docs" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">📖 API 交互式文档 (/docs)</a>
-          <a id="link-admin" href="http://111.230.92.136:8000/admin" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none;">🔧 后台管理 (/admin)</a>
+        <div style="font-size: 11px; line-height: 1.5; color: var(--text-tertiary); text-align: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
+          💡 课程排课信息由系统自动维护，支持手机离线浏览与无缝自适应。
         </div>
       </div>
     </div>
@@ -1604,29 +1599,23 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
     // 更新设置模态框中的显示信息
     function updateSettingsModalValues() {
-      const studentEl = document.getElementById('settings-student-info');
+      const termEl = document.getElementById('settings-term-display');
       const syncTimeEl = document.getElementById('settings-sync-time');
       const termStartEl = document.getElementById('settings-term-start');
-      const apiInput = document.getElementById('api-url-input');
+      const statusModeEl = document.getElementById('settings-status-mode');
 
-      if (studentEl && state.student) {
-        studentEl.innerText = `${state.student.xh || ''} · ${state.student.xm || ''}`;
+      if (termEl && state.term) {
+        termEl.innerText = `${state.term} 学期`;
       }
-      if (syncTimeEl && state.syncedAt) {
-        syncTimeEl.innerText = state.syncedAt;
+      if (syncTimeEl) {
+        syncTimeEl.innerText = state.syncedAt || '已载入最新';
       }
       if (termStartEl && state.semesterStartDate) {
         termStartEl.innerText = state.semesterStartDate;
       }
-      if (apiInput) {
-        apiInput.value = getStorage('kcb_api_base', '');
+      if (statusModeEl) {
+        statusModeEl.innerText = (state.syncStatus === 'online') ? '🟢 在线同步 (离线可用)' : '⚪ 本地就绪';
       }
-
-      const currentBase = getStorage('kcb_api_base', '') || DEFAULT_API_BASE;
-      const docsLink = document.getElementById('link-docs');
-      const adminLink = document.getElementById('link-admin');
-      if (docsLink) docsLink.href = `${currentBase.replace(/\/+$/, '')}/docs`;
-      if (adminLink) adminLink.href = `${currentBase.replace(/\/+$/, '')}/admin`;
     }
 
     // 从 API 获取课表数据
@@ -1794,7 +1783,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       theme: getStorage('kcb_theme', 'auto'),
       timeSlots: DEFAULT_TIME_SLOTS,
       term: '2026-2027-1',
-      student: { xh: '202417190053', xm: '巫家浩' },
+      student: null,
       syncedAt: '',
       extras: [],
       syncStatus: 'offline',
@@ -1853,18 +1842,14 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         });
       }
 
-      // 设置弹窗内保存 API 地址
-      const modalSaveBtn = document.getElementById('modal-save-btn');
-      if (modalSaveBtn) {
-        modalSaveBtn.addEventListener('click', () => {
-          const input = document.getElementById('api-url-input');
-          if (input) {
-            const val = input.value.trim();
-            setStorage('kcb_api_base', val);
-            showToast('✅ API 地址配置已保存');
-            updateSettingsModalValues();
-            fetchScheduleFromApi(true);
-          }
+      // 设置弹窗内清除缓存按钮
+      const clearCacheBtn = document.getElementById('modal-clear-cache-btn');
+      if (clearCacheBtn) {
+        clearCacheBtn.addEventListener('click', () => {
+          localStorage.removeItem('kcb_cached_schedule');
+          showToast('🧹 已清除本地缓存，正在重新同步...');
+          updateSettingsModalValues();
+          fetchScheduleFromApi(true);
         });
       }
 
