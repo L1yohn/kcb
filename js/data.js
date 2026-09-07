@@ -440,8 +440,34 @@
     return null;
   }
 
+  const DEFAULT_API_BASE = 'http://111.230.92.136:8000';
+
+  function adaptApiCourse(c) {
+    const startSec = c.start_section || (c.sections && c.sections[0]) || 1;
+    const endSec = c.end_section || (c.sections && c.sections[c.sections.length - 1]) || startSec;
+    const section = Math.ceil(startSec / 2);
+    const periods = `${startSec}-${endSec}节`;
+    
+    return {
+      id: c.id || `c-${Math.random().toString(36).slice(2, 8)}`,
+      name: c.name || '未知课程',
+      day: Number(c.day) || 1,
+      section: section,
+      periods: periods,
+      weeksRaw: c.weeks_raw || (c.weeks ? `${c.weeks[0]}-${c.weeks[c.weeks.length-1]}周` : ''),
+      weeks: Array.isArray(c.weeks) ? c.weeks : [],
+      teacher: c.teacher || '教师未定',
+      room: c.room || '教室待定',
+      type: (c.period ? c.period : '专业课') + (c.parity ? ` · ${c.parity}` : ''),
+      note: c.parity || (c.notes && c.notes.join(' ')) || '',
+      studentCount: c.student_count || 0,
+      raw: c.raw || ''
+    };
+  }
+
   // 挂载到全局
   global.KCB_DATA = {
+    DEFAULT_API_BASE,
     DEFAULT_SEMESTER_START_DATE,
     DEFAULT_TIME_SLOTS,
     COURSE_COLORS,
@@ -449,6 +475,7 @@
     ADJUSTMENTS,
     RAW_COURSES,
     WEEK_DAYS,
+    adaptApiCourse,
     isCourseActiveInWeek,
     calculateCurrentWeek,
     getCurrentDayOfWeek,

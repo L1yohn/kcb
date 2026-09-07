@@ -1,0 +1,2262 @@
+{
+  "ok": true,
+  "term": "2026-2027-1",
+  "xn": "2026-2027",
+  "xq": "1",
+  "title": "我的课程表",
+  "student": {
+    "xh": "202417190053",
+    "xm": "xxx"
+  },
+  "week": null,
+  "day": null,
+  "week_info": {
+    "today": "2026-09-07",
+    "weekday": 1,
+    "term_start": "2026-08-31",
+    "total_weeks": 20,
+    "current_week": 2,
+    "in_term": true,
+    "week_monday": "2026-09-07"
+  },
+  "day_names": [
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六",
+    "星期日"
+  ],
+  "layout": [
+    {
+      "section_no": 1,
+      "section": "第1节",
+      "period": "上午"
+    },
+    {
+      "section_no": 2,
+      "section": "第2节",
+      "period": "上午"
+    },
+    {
+      "section_no": 3,
+      "section": "第3节",
+      "period": "上午"
+    },
+    {
+      "section_no": 4,
+      "section": "第4节",
+      "period": "上午"
+    },
+    {
+      "section_no": 5,
+      "section": "第5节",
+      "period": "下午"
+    },
+    {
+      "section_no": 6,
+      "section": "第6节",
+      "period": "下午"
+    },
+    {
+      "section_no": 7,
+      "section": "第7节",
+      "period": "下午"
+    },
+    {
+      "section_no": 8,
+      "section": "第8节",
+      "period": "下午"
+    },
+    {
+      "section_no": 9,
+      "section": "第9节",
+      "period": "晚上"
+    },
+    {
+      "section_no": 10,
+      "section": "第10节",
+      "period": "晚上"
+    }
+  ],
+  "section_times": {},
+  "courses": [
+    {
+      "id": "s:df0b3ef57b8d",
+      "source": "sync",
+      "edited": false,
+      "name": "操作系统",
+      "teacher": "魏金玉",
+      "room": "C403",
+      "day": 1,
+      "day_name": "星期一",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        3,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "weeks_raw": "3,7-17单(3,4)",
+      "parity": "单周",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "操作系统 / 3,7-17单(3,4) / 魏金玉 / C403 / 人数:0"
+    },
+    {
+      "id": "s:929acb6451bb",
+      "source": "sync",
+      "edited": false,
+      "name": "计算机组成原理",
+      "teacher": "胡美辰",
+      "room": "C403",
+      "day": 1,
+      "day_name": "星期一",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18
+      ],
+      "weeks_raw": "2-18双(3,4)",
+      "parity": "双周",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "计算机组成原理 / 2-18双(3,4) / 胡美辰 / C403 / 人数:0"
+    },
+    {
+      "id": "s:2984a235d421",
+      "source": "sync",
+      "edited": false,
+      "name": "马克思主义基本原理",
+      "teacher": "邓君兰",
+      "room": "D401",
+      "day": 1,
+      "day_name": "星期一",
+      "sections": [
+        7,
+        8
+      ],
+      "start_section": 7,
+      "end_section": 8,
+      "weeks": [
+        3,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "weeks_raw": "3,7-17单(7,8)",
+      "parity": "单周",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "马克思主义基本原理 / 3,7-17单(7,8) / 邓君兰 / D401 / 人数:0"
+    },
+    {
+      "id": "s:9dda42b2cc5f",
+      "source": "sync",
+      "edited": false,
+      "name": "大学生心理健康教育（心理危机）",
+      "teacher": "蒲昭君",
+      "room": "毓秀201",
+      "day": 1,
+      "day_name": "星期一",
+      "sections": [
+        9,
+        10
+      ],
+      "start_section": 9,
+      "end_section": 10,
+      "weeks": [
+        7,
+        8
+      ],
+      "weeks_raw": "7-8(9,10)",
+      "parity": "",
+      "period": "晚上",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "大学生心理健康教育（心理危机） / 7-8(9,10) / 蒲昭君 / 毓秀201 / 人数:0"
+    },
+    {
+      "id": "s:24e7e9bcc348",
+      "source": "sync",
+      "edited": false,
+      "name": "形势与政策Ⅴ",
+      "teacher": "代芷榆",
+      "room": "毓秀201",
+      "day": 1,
+      "day_name": "星期一",
+      "sections": [
+        9,
+        10
+      ],
+      "start_section": 9,
+      "end_section": 10,
+      "weeks": [
+        13,
+        14
+      ],
+      "weeks_raw": "13-14(9,10)",
+      "parity": "",
+      "period": "晚上",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "形势与政策Ⅴ / 13-14(9,10) / 代芷榆 / 毓秀201 / 人数:0"
+    },
+    {
+      "id": "s:e1a02064d1f3",
+      "source": "sync",
+      "edited": false,
+      "name": "Java语言程序设计",
+      "teacher": "田小东",
+      "room": "A502",
+      "day": 2,
+      "day_name": "星期二",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18
+      ],
+      "weeks_raw": "2-18双(3,4)",
+      "parity": "双周",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "Java语言程序设计 / 2-18双(3,4) / 田小东 / A502 / 人数:0"
+    },
+    {
+      "id": "s:88d4411fa2de",
+      "source": "sync",
+      "edited": false,
+      "name": "软件项目管理",
+      "teacher": "张玉洁",
+      "room": "毓秀楼二机房",
+      "day": 2,
+      "day_name": "星期二",
+      "sections": [
+        5,
+        6
+      ],
+      "start_section": 5,
+      "end_section": 6,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(5,6)",
+      "parity": "",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "软件项目管理 / 2-4,6-18(5,6) / 张玉洁 / 毓秀楼二机房 / 人数:0"
+    },
+    {
+      "id": "s:41391cc0401a",
+      "source": "sync",
+      "edited": false,
+      "name": "马克思主义基本原理",
+      "teacher": "邓君兰",
+      "room": "C609",
+      "day": 2,
+      "day_name": "星期二",
+      "sections": [
+        7,
+        8
+      ],
+      "start_section": 7,
+      "end_section": 8,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(7,8)",
+      "parity": "",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "马克思主义基本原理 / 2-4,6-18(7,8) / 邓君兰 / C609 / 人数:0"
+    },
+    {
+      "id": "s:1895fa176b83",
+      "source": "sync",
+      "edited": false,
+      "name": "Hadoop大数据基础应用",
+      "teacher": "卢文婷",
+      "room": "A502",
+      "day": 2,
+      "day_name": "星期二",
+      "sections": [
+        9,
+        10
+      ],
+      "start_section": 9,
+      "end_section": 10,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(9,10)",
+      "parity": "",
+      "period": "晚上",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "Hadoop大数据基础应用 / 2-4,6-18(9,10) / 卢文婷 / A502 / 人数:0"
+    },
+    {
+      "id": "s:369bfc14140a",
+      "source": "sync",
+      "edited": false,
+      "name": "Java语言程序设计",
+      "teacher": "田小东",
+      "room": "A502",
+      "day": 3,
+      "day_name": "星期三",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(3,4)",
+      "parity": "",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "Java语言程序设计 / 2-4,6-18(3,4) / 田小东 / A502 / 人数:0"
+    },
+    {
+      "id": "s:54e5723ed433",
+      "source": "sync",
+      "edited": false,
+      "name": "Python数据挖掘与可视化",
+      "teacher": "吴宇",
+      "room": "A506",
+      "day": 3,
+      "day_name": "星期三",
+      "sections": [
+        7,
+        8
+      ],
+      "start_section": 7,
+      "end_section": 8,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(7,8)",
+      "parity": "",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "Python数据挖掘与可视化 / 2-4,6-18(7,8) / 吴宇 / A506 / 人数:0"
+    },
+    {
+      "id": "s:c10a56a342d7",
+      "source": "sync",
+      "edited": false,
+      "name": "计算机组成原理",
+      "teacher": "胡美辰",
+      "room": "钟灵楼（6号楼）204",
+      "day": 3,
+      "day_name": "星期三",
+      "sections": [
+        9,
+        10
+      ],
+      "start_section": 9,
+      "end_section": 10,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(9,10)",
+      "parity": "",
+      "period": "晚上",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "计算机组成原理 / 2-4,6-18(9,10) / 胡美辰 / 钟灵楼（6号楼）204 / 人数:0"
+    },
+    {
+      "id": "s:38cd9cba14f3",
+      "source": "sync",
+      "edited": false,
+      "name": "软件建模原理",
+      "teacher": "魏青锦",
+      "room": "毓秀楼五机房",
+      "day": 4,
+      "day_name": "星期四",
+      "sections": [
+        1,
+        2
+      ],
+      "start_section": 1,
+      "end_section": 2,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(1,2)",
+      "parity": "",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "软件建模原理 / 2-4,6-18(1,2) / 魏青锦 / 毓秀楼五机房 / 人数:0"
+    },
+    {
+      "id": "s:7290597ae40c",
+      "source": "sync",
+      "edited": false,
+      "name": "操作系统",
+      "teacher": "魏金玉",
+      "room": "C402",
+      "day": 4,
+      "day_name": "星期四",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(3,4)",
+      "parity": "",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "操作系统 / 2-4,6-18(3,4) / 魏金玉 / C402 / 人数:0"
+    },
+    {
+      "id": "s:e03be707424d",
+      "source": "sync",
+      "edited": false,
+      "name": "软件质量保证与测试",
+      "teacher": "董波",
+      "room": "A506",
+      "day": 4,
+      "day_name": "星期四",
+      "sections": [
+        5,
+        6
+      ],
+      "start_section": 5,
+      "end_section": 6,
+      "weeks": [
+        3,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "weeks_raw": "3,7-17单(5,6)",
+      "parity": "单周",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "软件质量保证与测试 / 3,7-17单(5,6) / 董波 / A506 / 人数:0"
+    },
+    {
+      "id": "s:e1c6e13f62c0",
+      "source": "sync",
+      "edited": false,
+      "name": "软件工程专业英语",
+      "teacher": "葛腾飞",
+      "room": "C312",
+      "day": 4,
+      "day_name": "星期四",
+      "sections": [
+        7,
+        8
+      ],
+      "start_section": 7,
+      "end_section": 8,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(7,8)",
+      "parity": "",
+      "period": "下午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "软件工程专业英语 / 2-4,6-18(7,8) / 葛腾飞 / C312 / 人数:0"
+    },
+    {
+      "id": "s:e25061741268",
+      "source": "sync",
+      "edited": false,
+      "name": "软件质量保证与测试",
+      "teacher": "董波",
+      "room": "毓秀楼一机房",
+      "day": 5,
+      "day_name": "星期五",
+      "sections": [
+        3,
+        4
+      ],
+      "start_section": 3,
+      "end_section": 4,
+      "weeks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "weeks_raw": "2-4,6-18(3,4)",
+      "parity": "",
+      "period": "上午",
+      "student_count": 0,
+      "notes": [],
+      "color": "",
+      "raw": "软件质量保证与测试 / 2-4,6-18(3,4) / 董波 / 毓秀楼一机房 / 人数:0"
+    }
+  ],
+  "grid": [
+    {
+      "section_no": 1,
+      "section": "第1节",
+      "period": "上午",
+      "days": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [
+          {
+            "id": "s:38cd9cba14f3",
+            "source": "sync",
+            "edited": false,
+            "name": "软件建模原理",
+            "teacher": "魏青锦",
+            "room": "毓秀楼五机房",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              1,
+              2
+            ],
+            "start_section": 1,
+            "end_section": 2,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(1,2)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件建模原理 / 2-4,6-18(1,2) / 魏青锦 / 毓秀楼五机房 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 2,
+      "section": "第2节",
+      "period": "上午",
+      "days": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [
+          {
+            "id": "s:38cd9cba14f3",
+            "source": "sync",
+            "edited": false,
+            "name": "软件建模原理",
+            "teacher": "魏青锦",
+            "room": "毓秀楼五机房",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              1,
+              2
+            ],
+            "start_section": 1,
+            "end_section": 2,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(1,2)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件建模原理 / 2-4,6-18(1,2) / 魏青锦 / 毓秀楼五机房 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 3,
+      "section": "第3节",
+      "period": "上午",
+      "days": {
+        "1": [
+          {
+            "id": "s:df0b3ef57b8d",
+            "source": "sync",
+            "edited": false,
+            "name": "操作系统",
+            "teacher": "魏金玉",
+            "room": "C403",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(3,4)",
+            "parity": "单周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "操作系统 / 3,7-17单(3,4) / 魏金玉 / C403 / 人数:0",
+            "span": 2,
+            "is_start": true
+          },
+          {
+            "id": "s:929acb6451bb",
+            "source": "sync",
+            "edited": false,
+            "name": "计算机组成原理",
+            "teacher": "胡美辰",
+            "room": "C403",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "weeks_raw": "2-18双(3,4)",
+            "parity": "双周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "计算机组成原理 / 2-18双(3,4) / 胡美辰 / C403 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "2": [
+          {
+            "id": "s:e1a02064d1f3",
+            "source": "sync",
+            "edited": false,
+            "name": "Java语言程序设计",
+            "teacher": "田小东",
+            "room": "A502",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "weeks_raw": "2-18双(3,4)",
+            "parity": "双周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Java语言程序设计 / 2-18双(3,4) / 田小东 / A502 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "3": [
+          {
+            "id": "s:369bfc14140a",
+            "source": "sync",
+            "edited": false,
+            "name": "Java语言程序设计",
+            "teacher": "田小东",
+            "room": "A502",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Java语言程序设计 / 2-4,6-18(3,4) / 田小东 / A502 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "4": [
+          {
+            "id": "s:7290597ae40c",
+            "source": "sync",
+            "edited": false,
+            "name": "操作系统",
+            "teacher": "魏金玉",
+            "room": "C402",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "操作系统 / 2-4,6-18(3,4) / 魏金玉 / C402 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "5": [
+          {
+            "id": "s:e25061741268",
+            "source": "sync",
+            "edited": false,
+            "name": "软件质量保证与测试",
+            "teacher": "董波",
+            "room": "毓秀楼一机房",
+            "day": 5,
+            "day_name": "星期五",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件质量保证与测试 / 2-4,6-18(3,4) / 董波 / 毓秀楼一机房 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 4,
+      "section": "第4节",
+      "period": "上午",
+      "days": {
+        "1": [
+          {
+            "id": "s:df0b3ef57b8d",
+            "source": "sync",
+            "edited": false,
+            "name": "操作系统",
+            "teacher": "魏金玉",
+            "room": "C403",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(3,4)",
+            "parity": "单周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "操作系统 / 3,7-17单(3,4) / 魏金玉 / C403 / 人数:0",
+            "span": 2,
+            "is_start": false
+          },
+          {
+            "id": "s:929acb6451bb",
+            "source": "sync",
+            "edited": false,
+            "name": "计算机组成原理",
+            "teacher": "胡美辰",
+            "room": "C403",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "weeks_raw": "2-18双(3,4)",
+            "parity": "双周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "计算机组成原理 / 2-18双(3,4) / 胡美辰 / C403 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "2": [
+          {
+            "id": "s:e1a02064d1f3",
+            "source": "sync",
+            "edited": false,
+            "name": "Java语言程序设计",
+            "teacher": "田小东",
+            "room": "A502",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ],
+            "weeks_raw": "2-18双(3,4)",
+            "parity": "双周",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Java语言程序设计 / 2-18双(3,4) / 田小东 / A502 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "3": [
+          {
+            "id": "s:369bfc14140a",
+            "source": "sync",
+            "edited": false,
+            "name": "Java语言程序设计",
+            "teacher": "田小东",
+            "room": "A502",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Java语言程序设计 / 2-4,6-18(3,4) / 田小东 / A502 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "4": [
+          {
+            "id": "s:7290597ae40c",
+            "source": "sync",
+            "edited": false,
+            "name": "操作系统",
+            "teacher": "魏金玉",
+            "room": "C402",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "操作系统 / 2-4,6-18(3,4) / 魏金玉 / C402 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "5": [
+          {
+            "id": "s:e25061741268",
+            "source": "sync",
+            "edited": false,
+            "name": "软件质量保证与测试",
+            "teacher": "董波",
+            "room": "毓秀楼一机房",
+            "day": 5,
+            "day_name": "星期五",
+            "sections": [
+              3,
+              4
+            ],
+            "start_section": 3,
+            "end_section": 4,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(3,4)",
+            "parity": "",
+            "period": "上午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件质量保证与测试 / 2-4,6-18(3,4) / 董波 / 毓秀楼一机房 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 5,
+      "section": "第5节",
+      "period": "下午",
+      "days": {
+        "1": [],
+        "2": [
+          {
+            "id": "s:88d4411fa2de",
+            "source": "sync",
+            "edited": false,
+            "name": "软件项目管理",
+            "teacher": "张玉洁",
+            "room": "毓秀楼二机房",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              5,
+              6
+            ],
+            "start_section": 5,
+            "end_section": 6,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(5,6)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件项目管理 / 2-4,6-18(5,6) / 张玉洁 / 毓秀楼二机房 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "3": [],
+        "4": [
+          {
+            "id": "s:e03be707424d",
+            "source": "sync",
+            "edited": false,
+            "name": "软件质量保证与测试",
+            "teacher": "董波",
+            "room": "A506",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              5,
+              6
+            ],
+            "start_section": 5,
+            "end_section": 6,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(5,6)",
+            "parity": "单周",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件质量保证与测试 / 3,7-17单(5,6) / 董波 / A506 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 6,
+      "section": "第6节",
+      "period": "下午",
+      "days": {
+        "1": [],
+        "2": [
+          {
+            "id": "s:88d4411fa2de",
+            "source": "sync",
+            "edited": false,
+            "name": "软件项目管理",
+            "teacher": "张玉洁",
+            "room": "毓秀楼二机房",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              5,
+              6
+            ],
+            "start_section": 5,
+            "end_section": 6,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(5,6)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件项目管理 / 2-4,6-18(5,6) / 张玉洁 / 毓秀楼二机房 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "3": [],
+        "4": [
+          {
+            "id": "s:e03be707424d",
+            "source": "sync",
+            "edited": false,
+            "name": "软件质量保证与测试",
+            "teacher": "董波",
+            "room": "A506",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              5,
+              6
+            ],
+            "start_section": 5,
+            "end_section": 6,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(5,6)",
+            "parity": "单周",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件质量保证与测试 / 3,7-17单(5,6) / 董波 / A506 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 7,
+      "section": "第7节",
+      "period": "下午",
+      "days": {
+        "1": [
+          {
+            "id": "s:2984a235d421",
+            "source": "sync",
+            "edited": false,
+            "name": "马克思主义基本原理",
+            "teacher": "邓君兰",
+            "room": "D401",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(7,8)",
+            "parity": "单周",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "马克思主义基本原理 / 3,7-17单(7,8) / 邓君兰 / D401 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "2": [
+          {
+            "id": "s:41391cc0401a",
+            "source": "sync",
+            "edited": false,
+            "name": "马克思主义基本原理",
+            "teacher": "邓君兰",
+            "room": "C609",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "马克思主义基本原理 / 2-4,6-18(7,8) / 邓君兰 / C609 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "3": [
+          {
+            "id": "s:54e5723ed433",
+            "source": "sync",
+            "edited": false,
+            "name": "Python数据挖掘与可视化",
+            "teacher": "吴宇",
+            "room": "A506",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Python数据挖掘与可视化 / 2-4,6-18(7,8) / 吴宇 / A506 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "4": [
+          {
+            "id": "s:e1c6e13f62c0",
+            "source": "sync",
+            "edited": false,
+            "name": "软件工程专业英语",
+            "teacher": "葛腾飞",
+            "room": "C312",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件工程专业英语 / 2-4,6-18(7,8) / 葛腾飞 / C312 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 8,
+      "section": "第8节",
+      "period": "下午",
+      "days": {
+        "1": [
+          {
+            "id": "s:2984a235d421",
+            "source": "sync",
+            "edited": false,
+            "name": "马克思主义基本原理",
+            "teacher": "邓君兰",
+            "room": "D401",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              3,
+              7,
+              9,
+              11,
+              13,
+              15,
+              17
+            ],
+            "weeks_raw": "3,7-17单(7,8)",
+            "parity": "单周",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "马克思主义基本原理 / 3,7-17单(7,8) / 邓君兰 / D401 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "2": [
+          {
+            "id": "s:41391cc0401a",
+            "source": "sync",
+            "edited": false,
+            "name": "马克思主义基本原理",
+            "teacher": "邓君兰",
+            "room": "C609",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "马克思主义基本原理 / 2-4,6-18(7,8) / 邓君兰 / C609 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "3": [
+          {
+            "id": "s:54e5723ed433",
+            "source": "sync",
+            "edited": false,
+            "name": "Python数据挖掘与可视化",
+            "teacher": "吴宇",
+            "room": "A506",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Python数据挖掘与可视化 / 2-4,6-18(7,8) / 吴宇 / A506 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "4": [
+          {
+            "id": "s:e1c6e13f62c0",
+            "source": "sync",
+            "edited": false,
+            "name": "软件工程专业英语",
+            "teacher": "葛腾飞",
+            "room": "C312",
+            "day": 4,
+            "day_name": "星期四",
+            "sections": [
+              7,
+              8
+            ],
+            "start_section": 7,
+            "end_section": 8,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(7,8)",
+            "parity": "",
+            "period": "下午",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "软件工程专业英语 / 2-4,6-18(7,8) / 葛腾飞 / C312 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 9,
+      "section": "第9节",
+      "period": "晚上",
+      "days": {
+        "1": [
+          {
+            "id": "s:9dda42b2cc5f",
+            "source": "sync",
+            "edited": false,
+            "name": "大学生心理健康教育（心理危机）",
+            "teacher": "蒲昭君",
+            "room": "毓秀201",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              7,
+              8
+            ],
+            "weeks_raw": "7-8(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "大学生心理健康教育（心理危机） / 7-8(9,10) / 蒲昭君 / 毓秀201 / 人数:0",
+            "span": 2,
+            "is_start": true
+          },
+          {
+            "id": "s:24e7e9bcc348",
+            "source": "sync",
+            "edited": false,
+            "name": "形势与政策Ⅴ",
+            "teacher": "代芷榆",
+            "room": "毓秀201",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              13,
+              14
+            ],
+            "weeks_raw": "13-14(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "形势与政策Ⅴ / 13-14(9,10) / 代芷榆 / 毓秀201 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "2": [
+          {
+            "id": "s:1895fa176b83",
+            "source": "sync",
+            "edited": false,
+            "name": "Hadoop大数据基础应用",
+            "teacher": "卢文婷",
+            "room": "A502",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Hadoop大数据基础应用 / 2-4,6-18(9,10) / 卢文婷 / A502 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "3": [
+          {
+            "id": "s:c10a56a342d7",
+            "source": "sync",
+            "edited": false,
+            "name": "计算机组成原理",
+            "teacher": "胡美辰",
+            "room": "钟灵楼（6号楼）204",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "计算机组成原理 / 2-4,6-18(9,10) / 胡美辰 / 钟灵楼（6号楼）204 / 人数:0",
+            "span": 2,
+            "is_start": true
+          }
+        ],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    },
+    {
+      "section_no": 10,
+      "section": "第10节",
+      "period": "晚上",
+      "days": {
+        "1": [
+          {
+            "id": "s:9dda42b2cc5f",
+            "source": "sync",
+            "edited": false,
+            "name": "大学生心理健康教育（心理危机）",
+            "teacher": "蒲昭君",
+            "room": "毓秀201",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              7,
+              8
+            ],
+            "weeks_raw": "7-8(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "大学生心理健康教育（心理危机） / 7-8(9,10) / 蒲昭君 / 毓秀201 / 人数:0",
+            "span": 2,
+            "is_start": false
+          },
+          {
+            "id": "s:24e7e9bcc348",
+            "source": "sync",
+            "edited": false,
+            "name": "形势与政策Ⅴ",
+            "teacher": "代芷榆",
+            "room": "毓秀201",
+            "day": 1,
+            "day_name": "星期一",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              13,
+              14
+            ],
+            "weeks_raw": "13-14(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "形势与政策Ⅴ / 13-14(9,10) / 代芷榆 / 毓秀201 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "2": [
+          {
+            "id": "s:1895fa176b83",
+            "source": "sync",
+            "edited": false,
+            "name": "Hadoop大数据基础应用",
+            "teacher": "卢文婷",
+            "room": "A502",
+            "day": 2,
+            "day_name": "星期二",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "Hadoop大数据基础应用 / 2-4,6-18(9,10) / 卢文婷 / A502 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "3": [
+          {
+            "id": "s:c10a56a342d7",
+            "source": "sync",
+            "edited": false,
+            "name": "计算机组成原理",
+            "teacher": "胡美辰",
+            "room": "钟灵楼（6号楼）204",
+            "day": 3,
+            "day_name": "星期三",
+            "sections": [
+              9,
+              10
+            ],
+            "start_section": 9,
+            "end_section": 10,
+            "weeks": [
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ],
+            "weeks_raw": "2-4,6-18(9,10)",
+            "parity": "",
+            "period": "晚上",
+            "student_count": 0,
+            "notes": [],
+            "color": "",
+            "raw": "计算机组成原理 / 2-4,6-18(9,10) / 胡美辰 / 钟灵楼（6号楼）204 / 人数:0",
+            "span": 2,
+            "is_start": false
+          }
+        ],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": []
+      }
+    }
+  ],
+  "unscheduled": [],
+  "extras": [
+    {
+      "title": "实践课(或无上课时间)信息",
+      "columns": [
+        "课程名称",
+        "教师",
+        "学分",
+        "起止周",
+        "上课时间",
+        "上课地点"
+      ],
+      "rows": [
+        {
+          "课程名称": "软件工程与建模综合课程设计",
+          "教师": "陈会平",
+          "学分": "1.0",
+          "起止周": "01-21",
+          "上课时间": "",
+          "上课地点": ""
+        }
+      ],
+      "text": ""
+    },
+    {
+      "title": "调、停（补）课信息",
+      "columns": [
+        "编号",
+        "课程名称",
+        "原上课时间地点",
+        "现上课时间地点",
+        "申请时间"
+      ],
+      "rows": [],
+      "text": ""
+    }
+  ],
+  "counts": {
+    "total": 17,
+    "shown": 17
+  },
+  "synced_at": "2026-09-07 16:40:38",
+  "last_sync": {
+    "term": "2026-2027-1",
+    "ok": true,
+    "count": 17,
+    "message": "同步成功",
+    "at": "2026-09-07 16:40:38"
+  },
+  "generated_at": "2026-09-07 17:31:43",
+  "_fetched_by": "github-actions",
+  "_baked_at": "2026-09-07T09:31:40.566Z"
+}

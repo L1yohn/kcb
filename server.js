@@ -33,7 +33,52 @@ function getLocalIpAddresses() {
   return addresses;
 }
 
+const API_BACKEND_HOST = '111.230.92.136';
+const API_BACKEND_PORT = 8000;
+
 const server = http.createServer((req, res) => {
+  // API 反向代理转发至后端 FastAPI 服务
+  if (req.url.startsWith('/api/')) {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': '*'
+      });
+      res.end();
+      return;
+    }
+
+    const proxyReq = http.request({
+      hostname: API_BACKEND_HOST,
+      port: API_BACKEND_PORT,
+      path: req.url,
+      method: req.method,
+      headers: {
+        ...req.headers,
+        host: `${API_BACKEND_HOST}:${API_BACKEND_PORT}`
+      }
+    }, (proxyRes) => {
+      const headers = { ...proxyRes.headers };
+      headers['access-control-allow-origin'] = '*';
+      headers['access-control-allow-methods'] = 'GET, POST, PUT, DELETE, PATCH, OPTIONS';
+      headers['access-control-allow-headers'] = '*';
+      res.writeHead(proxyRes.statusCode, headers);
+      proxyRes.pipe(res);
+    });
+
+    proxyReq.on('error', (err) => {
+      res.writeHead(502, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({ ok: false, error: 'proxy_error', message: '无法连接到后端课表API: ' + err.message }));
+    });
+
+    req.pipe(proxyReq);
+    return;
+  }
+
   let reqPath = decodeURI(req.url.split('?')[0]);
   if (reqPath === '/' || reqPath === '') {
     reqPath = '/index.html';

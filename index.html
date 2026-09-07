@@ -1010,6 +1010,141 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 .primary-btn:hover {
   background: var(--accent-hover);
 }
+
+/* 同步状态徽标与设置面板样式 */
+.sync-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+.sync-badge.online {
+  color: #16a34a;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+[data-theme="dark"] .sync-badge.online {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.25);
+}
+.sync-badge.offline {
+  color: var(--text-tertiary);
+  background: var(--bg-subtle);
+  border-color: var(--border-color);
+}
+.sync-badge.syncing {
+  color: var(--accent);
+  background: var(--accent-light);
+  border-color: var(--accent-border);
+}
+.sync-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+}
+.rotating {
+  animation: spin 0.8s linear infinite !important;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--text-primary);
+  color: var(--bg-main);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.settings-group {
+  margin-bottom: 16px;
+}
+.settings-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+.settings-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--text-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+.settings-input:focus {
+  border-color: var(--accent);
+}
+.extras-section {
+  margin-top: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+.extras-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.extras-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.extras-table th {
+  text-align: left;
+  padding: 6px 8px;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+.extras-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
 </style>
 </head>
 <body>
@@ -1021,8 +1156,13 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         <div class="brand-info">
           <div class="brand-icon">📚</div>
           <div class="brand-title-wrap">
-            <div class="brand-title">学期课程表</div>
-            <div class="brand-subtitle">2026 秋季学期</div>
+            <div class="brand-title" id="app-main-title">学期课程表</div>
+            <div class="brand-subtitle" id="brand-subtitle-wrap">
+              <span id="term-display">2026-2027-1</span>
+              <span id="sync-badge" class="sync-badge offline" title="点击查看同步详情">
+                <span class="sync-dot"></span><span id="sync-badge-text">初始化中</span>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -1039,6 +1179,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
         </nav>
 
         <div class="header-actions">
+          <button class="icon-btn" id="sync-btn" title="同步教务课表数据" aria-label="同步数据">🔄</button>
+          <button class="icon-btn" id="settings-btn" title="设置与 API 管理" aria-label="设置">⚙️</button>
           <button class="icon-btn" id="theme-toggle-btn" title="切换暗黑/浅色模式" aria-label="切换主题">🌓</button>
         </div>
       </div>
@@ -1075,6 +1217,9 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       <div id="timetable-scroll-wrapper" class="timetable-scroll-wrapper">
         <div id="timetable-grid-content" class="timetable-grid"></div>
       </div>
+
+      <!-- 实践课与综合实训课程（来自教务 API） -->
+      <div id="week-extras-container"></div>
     </main>
 
     <!-- 底部 Tab 导航栏 -->
@@ -1101,6 +1246,73 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       <div id="detail-modal-content"></div>
     </div>
   </div>
+
+  <!-- 课表设置与 API 弹窗 Modal -->
+  <div id="settings-modal" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <div class="modal-title">⚙️ 课表与 API 设置</div>
+        <button class="modal-close-btn" aria-label="关闭">&times;</button>
+      </div>
+      <div id="settings-modal-content">
+        <div class="settings-group">
+          <label class="settings-label">教务 API 服务器地址</label>
+          <input type="text" id="api-url-input" class="settings-input" placeholder="http://111.230.92.136:8000" />
+          <div style="font-size: 11px; color: var(--text-tertiary); margin-top: 5px;">
+            留空将自动优先使用当前同源代理 <code>/api</code>，直连默认 <code>http://111.230.92.136:8000</code>
+          </div>
+        </div>
+
+        <div class="detail-item-card">
+          <div class="detail-icon">👤</div>
+          <div>
+            <div class="detail-label">学号与学生姓名</div>
+            <div class="detail-val" id="settings-student-info">202417190053 · 巫家浩</div>
+          </div>
+        </div>
+
+        <div class="detail-item-card">
+          <div class="detail-icon">⏱️</div>
+          <div>
+            <div class="detail-label">最近数据同步时间</div>
+            <div class="detail-val" id="settings-sync-time">暂未同步</div>
+          </div>
+        </div>
+
+        <div class="detail-item-card">
+          <div class="detail-icon">📅</div>
+          <div>
+            <div class="detail-label">学期第一周周一 (term_start)</div>
+            <div class="detail-val" id="settings-term-start">2026-08-31</div>
+          </div>
+        </div>
+
+        <div id="settings-extras-list" style="margin-top: 10px;"></div>
+
+        <div style="display: flex; gap: 8px; margin-top: 18px;">
+          <button class="primary-btn" id="modal-sync-btn" style="flex: 2; margin-top: 0;">
+            🔄 立即从教务同步
+          </button>
+          <button class="primary-btn" id="modal-save-btn" style="flex: 1; margin-top: 0; background: var(--bg-subtle); color: var(--text-primary); border: 1px solid var(--border-color);">
+            保存地址
+          </button>
+        </div>
+
+        <div style="font-size: 11.5px; line-height: 1.5; color: var(--text-secondary); background: var(--bg-subtle); padding: 10px 12px; border-radius: var(--radius-sm); margin-top: 14px; border: 1px dashed var(--border-color);">
+          💡 <strong>跨域提示</strong>：直接双击打开本地网页（<code>file://</code> 协议）受浏览器跨域安全限制（CORS）。<strong>双击运行目录下的 <code>start.bat</code></strong>，通过本地服务访问即可 100% 成功同步最新教务数据！
+        </div>
+
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 12px;">
+          <a id="link-docs" href="http://111.230.92.136:8000/docs" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">📖 API 交互式文档 (/docs)</a>
+          <a id="link-admin" href="http://111.230.92.136:8000/admin" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none;">🔧 后台管理 (/admin)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全局 Toast 吐司提示 -->
+  <div id="toast" class="toast"></div>
 
   <!-- 核心数据与业务逻辑 (完全内联化，零外部网络依赖) -->
   <script>
@@ -1200,6 +1412,302 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       { id: 'fri-34-1', name: '软件质量保证与测试', day: 5, section: 2, periods: '3-4节', weeksRaw: '2-18(3,4)', weeks: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], teacher: '董波', room: '毓秀楼一机房', type: '专业必修' }
     ];
 
+    let CURRENT_COURSES = [...RAW_COURSES];
+
+    const DEFAULT_API_BASE = 'http://111.230.92.136:8000';
+
+    function getApiBase() {
+      const custom = getStorage('kcb_api_base', '');
+      if (custom) return custom.replace(/\/+$/, '');
+      if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+        return '';
+      }
+      return DEFAULT_API_BASE;
+    }
+
+    function showToast(msg, duration = 3000) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, duration);
+    }
+
+    function setSyncStatus(status, text) {
+      const badge = document.getElementById('sync-badge');
+      const badgeText = document.getElementById('sync-badge-text');
+      if (!badge || !badgeText) return;
+      badge.className = `sync-badge ${status}`;
+      badgeText.innerText = text;
+      state.syncStatus = status;
+      state.syncStatusText = text;
+    }
+
+    // 动态优雅莫兰迪配色生成器
+    function getCourseColor(courseName) {
+      if (COURSE_COLORS[courseName]) return COURSE_COLORS[courseName];
+      const PALETTES = [
+        { bg: '#EFF2F5', border: '#D4DCE2', text: '#3A5063', solid: '#4F6B85' },
+        { bg: '#F1F4EE', border: '#D6DDD0', text: '#43583E', solid: '#587452' },
+        { bg: '#F8F4EA', border: '#E7DECA', text: '#775F2A', solid: '#9B7E38' },
+        { bg: '#EEF4F3', border: '#D0DFDC', text: '#365752', solid: '#4A726C' },
+        { bg: '#FAF1EC', border: '#E9D6CB', text: '#824322', solid: '#C96A3D' },
+        { bg: '#EFF3EC', border: '#D4DDD0', text: '#3F573B', solid: '#55724F' },
+        { bg: '#F9ECE9', border: '#E8CECA', text: '#87362B', solid: '#B34A3C' },
+        { bg: '#EEF2F6', border: '#D3DCE5', text: '#344D66', solid: '#4B6A8A' },
+        { bg: '#F3EFF5', border: '#DDD5E1', text: '#5A4866', solid: '#7A648A' },
+        { bg: '#F3EFF7', border: '#DDD5E5', text: '#58446B', solid: '#745D8C' },
+        { bg: '#F7EFF2', border: '#E7D5DC', text: '#784355', solid: '#9E5B72' },
+        { bg: '#F9F1EB', border: '#EBDCCE', text: '#7F4E2B', solid: '#A8683B' }
+      ];
+      let hash = 0;
+      for (let i = 0; i < courseName.length; i++) {
+        hash = (hash << 5) - hash + courseName.charCodeAt(i);
+        hash |= 0;
+      }
+      const idx = Math.abs(hash) % PALETTES.length;
+      COURSE_COLORS[courseName] = PALETTES[idx];
+      return COURSE_COLORS[courseName];
+    }
+
+    // 后端 API 课程适配为前端模型
+    function adaptApiCourse(c) {
+      const startSec = c.start_section || (c.sections && c.sections[0]) || 1;
+      const endSec = c.end_section || (c.sections && c.sections[c.sections.length - 1]) || startSec;
+      const section = Math.ceil(startSec / 2);
+      const periods = `${startSec}-${endSec}节`;
+      
+      return {
+        id: c.id || `c-${Math.random().toString(36).slice(2, 8)}`,
+        name: c.name || '未知课程',
+        day: Number(c.day) || 1,
+        section: section,
+        periods: periods,
+        weeksRaw: c.weeks_raw || (c.weeks ? `${c.weeks[0]}-${c.weeks[c.weeks.length-1]}周` : ''),
+        weeks: Array.isArray(c.weeks) ? c.weeks : [],
+        teacher: c.teacher || '教师未定',
+        room: c.room || '教室待定',
+        type: (c.period ? c.period : '必修课程') + (c.parity ? ` · ${c.parity}` : ''),
+        note: c.parity || (c.notes && c.notes.join(' ')) || '',
+        studentCount: c.student_count || 0,
+        raw: c.raw || ''
+      };
+    }
+
+    // 应用并渲染后端排课数据
+    function applyScheduleData(data) {
+      if (!data || !data.ok) return;
+
+      if (data.term) {
+        state.term = data.term;
+        const termEl = document.getElementById('term-display');
+        if (termEl) termEl.innerText = data.term;
+      }
+
+      if (data.title) {
+        state.pageTitle = data.title;
+        const titleEl = document.getElementById('app-main-title');
+        if (titleEl) titleEl.innerText = data.title;
+      }
+
+      if (data.week_info && data.week_info.term_start) {
+        state.semesterStartDate = data.week_info.term_start;
+        setStorage('kcb_start_date', data.week_info.term_start);
+      }
+
+      if (Array.isArray(data.courses) && data.courses.length > 0) {
+        CURRENT_COURSES = data.courses.map(adaptApiCourse);
+      }
+
+      if (Array.isArray(data.extras)) {
+        state.extras = data.extras;
+        renderExtras();
+      }
+
+      if (data.student) {
+        state.student = data.student;
+      }
+
+      if (data.synced_at) {
+        state.syncedAt = data.synced_at;
+      }
+
+      updateSettingsModalValues();
+      refreshRealTimeState();
+      renderAll();
+    }
+
+    // 渲染实践课/附加课程
+    function renderExtras() {
+      const container = document.getElementById('week-extras-container');
+      const settingsList = document.getElementById('settings-extras-list');
+      if (!state.extras || state.extras.length === 0) {
+        if (container) container.innerHTML = '';
+        if (settingsList) settingsList.innerHTML = '';
+        return;
+      }
+
+      const practiceGroup = state.extras.find(e => e.rows && e.rows.length > 0);
+      if (!practiceGroup) {
+        if (container) container.innerHTML = '';
+        if (settingsList) settingsList.innerHTML = '';
+        return;
+      }
+
+      const rowsHtml = practiceGroup.rows.map(r => `
+        <tr>
+          <td style="font-weight: 600;">${r['课程名称'] || '-'}</td>
+          <td>${r['教师'] || '-'}</td>
+          <td>${r['学分'] ? r['学分'] + '学分' : '-'}</td>
+          <td>${r['起止周'] ? '第' + r['起止周'] + '周' : '-'}</td>
+          <td>${r['上课地点'] || r['上课时间'] || '无固定节次'}</td>
+        </tr>
+      `).join('');
+
+      const extrasBoxHtml = `
+        <div class="extras-section">
+          <div class="extras-title">📋 ${practiceGroup.title || '实践课/实训综合课程'}</div>
+          <div style="overflow-x: auto;">
+            <table class="extras-table">
+              <thead>
+                <tr>
+                  <th>课程名称</th>
+                  <th>任课教师</th>
+                  <th>学分</th>
+                  <th>周次</th>
+                  <th>地点/时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+      if (container) container.innerHTML = extrasBoxHtml;
+      if (settingsList) {
+        settingsList.innerHTML = `
+          <div class="detail-label" style="margin-top:10px; margin-bottom:6px;">📋 实践课 / 综合课程设计</div>
+          ${practiceGroup.rows.map(r => `
+            <div style="font-size:12px; padding:6px 10px; background:var(--bg-subtle); border-radius:var(--radius-xs); margin-bottom:4px;">
+              <strong>${r['课程名称']}</strong> · ${r['教师'] || '教师未定'} (${r['学分']}学分，${r['起止周'] || ''})
+            </div>
+          `).join('')}
+        `;
+      }
+    }
+
+    // 更新设置模态框中的显示信息
+    function updateSettingsModalValues() {
+      const studentEl = document.getElementById('settings-student-info');
+      const syncTimeEl = document.getElementById('settings-sync-time');
+      const termStartEl = document.getElementById('settings-term-start');
+      const apiInput = document.getElementById('api-url-input');
+
+      if (studentEl && state.student) {
+        studentEl.innerText = `${state.student.xh || ''} · ${state.student.xm || ''}`;
+      }
+      if (syncTimeEl && state.syncedAt) {
+        syncTimeEl.innerText = state.syncedAt;
+      }
+      if (termStartEl && state.semesterStartDate) {
+        termStartEl.innerText = state.semesterStartDate;
+      }
+      if (apiInput) {
+        apiInput.value = getStorage('kcb_api_base', '');
+      }
+
+      const currentBase = getStorage('kcb_api_base', '') || DEFAULT_API_BASE;
+      const docsLink = document.getElementById('link-docs');
+      const adminLink = document.getElementById('link-admin');
+      if (docsLink) docsLink.href = `${currentBase.replace(/\/+$/, '')}/docs`;
+      if (adminLink) adminLink.href = `${currentBase.replace(/\/+$/, '')}/admin`;
+    }
+
+    // 从 API 获取课表数据
+    async function fetchScheduleFromApi(showFeedback = false) {
+      setSyncStatus('syncing', '正在同步...');
+      const syncBtn = document.getElementById('sync-btn');
+      const modalSyncBtn = document.getElementById('modal-sync-btn');
+      if (syncBtn) syncBtn.classList.add('rotating');
+      if (modalSyncBtn) {
+        modalSyncBtn.classList.add('rotating');
+        modalSyncBtn.disabled = true;
+      }
+
+      // 智能候选接口列表
+      let candidateUrls = [];
+      const customBase = getStorage('kcb_api_base', '').trim();
+
+      if (customBase) {
+        candidateUrls.push(customBase.replace(/\/+$/, '') + '/api/schedule');
+      } else if (window.location.protocol === 'file:') {
+        // file:// 模式：优先尝试本地 start.bat 代理，其次尝试同目录 schedule.json，最后尝试远端
+        candidateUrls.push('http://localhost:8080/api/schedule');
+        candidateUrls.push('schedule.json');
+        candidateUrls.push(DEFAULT_API_BASE + '/api/schedule');
+      } else {
+        // 网页模式（如 GitHub Pages、Vercel 等）：
+        // 优先读取同源 schedule.json（GitHub Actions 定时同步生成），其次尝试 /api 代理
+        candidateUrls.push('schedule.json');
+        candidateUrls.push('/api/schedule');
+        candidateUrls.push(DEFAULT_API_BASE + '/api/schedule');
+      }
+
+      let lastError = null;
+      let data = null;
+
+      for (const candidate of candidateUrls) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 6000);
+          const response = await fetch(candidate, { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const resJson = await response.json();
+          if (!resJson || !resJson.ok) throw new Error(resJson?.message || '返回数据格式异常');
+          data = resJson;
+          break;
+        } catch (e) {
+          lastError = e;
+        }
+      }
+
+      try {
+        if (data) {
+          applyScheduleData(data);
+          setStorage('kcb_cached_schedule', JSON.stringify(data));
+          setSyncStatus('online', '已同步最新');
+          if (showFeedback) {
+            showToast(`✅ 课表数据已成功同步！(共 ${data.courses ? data.courses.length : 0} 门课)`);
+          }
+          return data;
+        } else {
+          console.warn('API同步失败:', lastError);
+          setSyncStatus('offline', '本地数据');
+          if (showFeedback) {
+            let reason = lastError ? lastError.message : '连接失败';
+            if (window.location.protocol === 'file:' && (reason === 'Failed to fetch' || reason.includes('fetch'))) {
+              reason = '受浏览器跨域限制(CORS)，请双击运行 start.bat 启动即可成功同步';
+            }
+            showToast(`⚠️ ${reason}`, 4500);
+          }
+          return null;
+        }
+      } finally {
+        if (syncBtn) syncBtn.classList.remove('rotating');
+        if (modalSyncBtn) {
+          modalSyncBtn.classList.remove('rotating');
+          modalSyncBtn.disabled = false;
+        }
+      }
+    }
+
     const WEEK_DAYS = [
       { day: 1, name: '周一', full: '星期一' },
       { day: 2, name: '周二', full: '星期二' },
@@ -1282,9 +1790,15 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       todayDay: 1,
       selectedDay: 1,
       filterOnlyActiveGrid: true,
-            showWeekends: false,
+      showWeekends: false,
       theme: getStorage('kcb_theme', 'auto'),
-      timeSlots: DEFAULT_TIME_SLOTS
+      timeSlots: DEFAULT_TIME_SLOTS,
+      term: '2026-2027-1',
+      student: { xh: '202417190053', xm: '巫家浩' },
+      syncedAt: '',
+      extras: [],
+      syncStatus: 'offline',
+      syncStatusText: '本地模式'
     };
 
     function refreshRealTimeState() {
@@ -1309,6 +1823,50 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => switchTab(btn.dataset.tab));
       });
+
+      // 顶部刷新按钮
+      const syncBtn = document.getElementById('sync-btn');
+      if (syncBtn) {
+        syncBtn.addEventListener('click', () => {
+          fetchScheduleFromApi(true);
+        });
+      }
+
+      // 设置按钮与同步徽标点击打开设置弹窗
+      const settingsBtn = document.getElementById('settings-btn');
+      const syncBadge = document.getElementById('sync-badge');
+      const settingsModal = document.getElementById('settings-modal');
+
+      function openSettings() {
+        updateSettingsModalValues();
+        if (settingsModal) settingsModal.classList.add('active');
+      }
+
+      if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
+      if (syncBadge) syncBadge.addEventListener('click', openSettings);
+
+      // 设置弹窗内同步按钮
+      const modalSyncBtn = document.getElementById('modal-sync-btn');
+      if (modalSyncBtn) {
+        modalSyncBtn.addEventListener('click', () => {
+          fetchScheduleFromApi(true);
+        });
+      }
+
+      // 设置弹窗内保存 API 地址
+      const modalSaveBtn = document.getElementById('modal-save-btn');
+      if (modalSaveBtn) {
+        modalSaveBtn.addEventListener('click', () => {
+          const input = document.getElementById('api-url-input');
+          if (input) {
+            const val = input.value.trim();
+            setStorage('kcb_api_base', val);
+            showToast('✅ API 地址配置已保存');
+            updateSettingsModalValues();
+            fetchScheduleFromApi(true);
+          }
+        });
+      }
 
       const themeToggleBtn = document.getElementById('theme-toggle-btn');
       if (themeToggleBtn) {
@@ -1500,9 +2058,9 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
       let dayCourses = [];
       if (adjustment) {
-        dayCourses = RAW_COURSES.filter(c => c.day === adjustment.replaceDay);
+        dayCourses = CURRENT_COURSES.filter(c => c.day === adjustment.replaceDay);
       } else {
-        dayCourses = RAW_COURSES.filter(c => c.day === state.selectedDay);
+        dayCourses = CURRENT_COURSES.filter(c => c.day === state.selectedDay);
       }
 
       const activeDayCourses = holiday ? [] : dayCourses.filter(c => isCourseActiveInWeek(c, state.selectedWeek));
@@ -1597,7 +2155,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
 
       container.innerHTML = activeDayCourses.map(course => {
         const slot = getTimeSlot(course.section, targetDateStr, state.selectedDay);
-        const color = COURSE_COLORS[course.name] || { bg: 'var(--bg-subtle)', border: 'var(--border-color)', text: 'var(--text-primary)', solid: 'var(--accent)' };
+        const color = getCourseColor(course.name);
 
         let liveBadge = '';
         if (isActualToday && slot.start) {
@@ -1708,7 +2266,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
               targetDay = colAdj.replaceDay;
             }
 
-            const cellCourses = RAW_COURSES.filter(c => c.day === targetDay && c.section === section);
+            const cellCourses = CURRENT_COURSES.filter(c => c.day === targetDay && c.section === section);
 
             if (cellCourses.length > 0) {
               const activeCourses = cellCourses.filter(c => isCourseActiveInWeek(c, state.selectedWeek));
@@ -1719,7 +2277,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
               coursesToDisplay.forEach(c => {
                 const isActive = isCourseActiveInWeek(c, state.selectedWeek);
                 const cardSlot = getTimeSlot(c.section, colDateStr, targetDay);
-                const color = COURSE_COLORS[c.name] || { bg: 'var(--bg-subtle)', border: 'var(--border-color)', text: 'var(--text-primary)', solid: 'var(--accent)' };
+                const color = getCourseColor(c.name);
                 
                 gridHtml += `
                   <div class="grid-card ${isActive ? '' : 'inactive-week'}" 
@@ -1752,8 +2310,8 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       }
     }
 
-        window.showCourseDetail = function(courseId) {
-      const course = RAW_COURSES.find(c => c.id === courseId);
+    window.showCourseDetail = function(courseId) {
+      const course = CURRENT_COURSES.find(c => c.id === courseId);
       if (!course) return;
 
       const modal = document.getElementById('course-detail-modal');
@@ -1765,7 +2323,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       const targetDateStr = formatDateString(targetDate);
       const dayName = WEEK_DAYS.find(d => d.day === course.day)?.full || '';
       const slot = getTimeSlot(course.section, targetDateStr, course.day);
-      const color = COURSE_COLORS[course.name] || { solid: '#4f46e5' };
+      const color = getCourseColor(course.name);
 
       title.innerHTML = `<span style="color: ${color.solid}">${course.name}</span>`;
       
@@ -1796,7 +2354,7 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
           <div>
             <div class="detail-label">排课周次规则</div>
             <div class="detail-val">${course.weeksRaw}</div>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+            <div style="font-size: 11px; color: var(--text-tertiary); margin-top: 2px;">
               包含周次: ${course.weeks.map(w => `第${w}周`).join(', ')}
             </div>
           </div>
@@ -1805,10 +2363,19 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
           <div class="detail-icon">🏷️</div>
           <div>
             <div class="detail-label">课程性质 / 备注</div>
-            <div class="detail-val">${course.type}</div>
+            <div class="detail-val">${course.type}${course.note ? ` (${course.note})` : ''}</div>
           </div>
         </div>
-        <button class="primary-btn" onclick="navigator.clipboard && navigator.clipboard.writeText('${course.name} 教室:${course.room} 老师:${course.teacher} 时间:${dayName} ${course.periods} (${slot.timeDesc})'); alert('课程信息已复制到剪贴板！');">
+        ${course.raw ? `
+        <div class="detail-item-card">
+          <div class="detail-icon">📄</div>
+          <div>
+            <div class="detail-label">教务原始记录</div>
+            <div class="detail-val" style="font-size: 12px; font-weight: normal; color: var(--text-secondary); word-break: break-all;">${course.raw}</div>
+          </div>
+        </div>
+        ` : ''}
+        <button class="primary-btn" onclick="navigator.clipboard && navigator.clipboard.writeText('${course.name} 教室:${course.room} 老师:${course.teacher} 时间:${dayName} ${course.periods} (${slot.timeDesc})'); showToast('📋 课程信息已复制到剪贴板！');">
           📋 复制课程信息
         </button>
       `;
@@ -1826,14 +2393,30 @@ button, a, .course-item-card, .grid-card, .weekday-btn, .week-pill {
       }, 30000);
     }
 
-
-
     function init() {
       initTheme();
-      refreshRealTimeState();
+
+      // 1. 优先读取本地持久化缓存（秒开）
+      const cached = getStorage('kcb_cached_schedule', null);
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached);
+          applyScheduleData(parsed);
+          setSyncStatus('offline', '已读取本地缓存');
+        } catch (e) {
+          refreshRealTimeState();
+          renderAll();
+        }
+      } else {
+        refreshRealTimeState();
+        renderAll();
+      }
+
       bindEvents();
-      renderAll();
       startStatusTicker();
+
+      // 2. 静默拉取后端最新数据
+      fetchScheduleFromApi(false);
     }
 
     // 禁止双指手势缩放 (Pinch-to-zoom / Gesture zoom)，同时完全保留单指原生平滑滑动与下拉刷新 (Pull-to-refresh)
